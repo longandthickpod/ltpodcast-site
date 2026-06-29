@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,18,400;0,18,500;1,18,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#1c1a17}
+  ::selection{background:oklch(0.84 0.16 90);color:#1c1a17}
+  input::placeholder,select{color:#8d8778}
+</style>
+</helmet>
+
+<div style="background:#1c1a17;color:#faf8f3;font-family:'Archivo',sans-serif;min-height:100vh">
+
+  <!-- minimal nav: just logo + back -->
+  <header style="max-width:1080px;margin:0 auto;padding:24px 32px;display:flex;align-items:center;justify-content:space-between">
+    <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:11px">
+      <div style="width:30px;height:30px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #faf8f3"></div>
+      <span style="font-weight:900;font-size:17px;letter-spacing:-0.01em">THE LONG &amp; THICK</span>
+    </a>
+    <a href="index.html" style="text-decoration:none;font-family:'Space Mono',monospace;font-size:13px;color:#8d8778">← Back to site</a>
+  </header>
+
+  <!-- HERO + FORM -->
+  <section style="max-width:1080px;margin:0 auto;padding:48px 32px 72px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.84 0.16 90);border:1px solid #3a382f;border-radius:100px;padding:8px 15px;margin-bottom:28px">
+        <span style="width:7px;height:7px;border-radius:50%;background:oklch(0.74 0.15 130)"></span>The 1-minute drop · free
+      </div>
+      <h1 style="font-weight:900;font-size:72px;line-height:0.9;letter-spacing:-0.04em;margin:0 0 24px;text-wrap:balance">Cut through the noise, <span style="color:oklch(0.84 0.16 90)">once a week.</span></h1>
+      <p style="font-family:'Newsreader',serif;font-size:21px;line-height:1.5;color:#cfcabb;max-width:480px;margin:0 0 32px">One short email from Ronnie &amp; Daniel: the health and wellness story actually worth your attention, the trend worth ignoring, and the new episode — in under a minute of reading.</p>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:oklch(0.74 0.15 130);color:#1c1a17;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">✓</span><span style="font-family:'Newsreader',serif;font-size:18px;color:#cfcabb">No fluff, no fear-mongering, no 14-paragraph intros</span></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:oklch(0.74 0.15 130);color:#1c1a17;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">✓</span><span style="font-family:'Newsreader',serif;font-size:18px;color:#cfcabb">Science, translated by two guys who aren't selling you anything</span></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:22px;height:22px;border-radius:50%;background:oklch(0.74 0.15 130);color:#1c1a17;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">✓</span><span style="font-family:'Newsreader',serif;font-size:18px;color:#cfcabb">One click to unsubscribe, always</span></div>
+      </div>
+    </div>
+
+    <!-- FORM CARD -->
+    <div style="background:#faf8f3;color:#1c1a17;border-radius:24px;border:2px solid #000;box-shadow:12px 12px 0 oklch(0.74 0.15 130);padding:36px">
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center;padding:24px 8px">
+          <div style="width:64px;height:64px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:30px;font-weight:900">✓</div>
+          <h2 style="font-weight:900;font-size:30px;letter-spacing:-0.02em;margin:0 0 10px">You're in.</h2>
+          <p style="font-family:'Newsreader',serif;font-size:18px;color:#46433c;line-height:1.5;margin:0 0 20px">Check your inbox for a quick hello. Next drop lands this week — keep an eye out.</p>
+          <a href="Episodes.dc.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:13px 24px;font-weight:700;font-size:15px">Browse episodes while you wait →</a>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:6px">Join the list</div>
+          <h2 style="font-weight:900;font-size:28px;letter-spacing:-0.02em;margin:0 0 22px">Get the next drop</h2>
+
+          <label style="display:block;font-weight:700;font-size:13px;margin-bottom:7px">First name</label>
+          <input value="{{ name }}" onInput="{{ onName }}" type="text" placeholder="Your name" style="width:100%;border:2px solid #1c1a17;border-radius:12px;padding:14px 16px;font-size:16px;font-family:'Archivo',sans-serif;background:#fff;outline:none;margin-bottom:16px"/>
+
+          <label style="display:block;font-weight:700;font-size:13px;margin-bottom:7px">Email</label>
+          <input value="{{ email }}" onInput="{{ onEmail }}" type="email" placeholder="you@email.com" style="width:100%;border:2px solid #1c1a17;border-radius:12px;padding:14px 16px;font-size:16px;font-family:'Archivo',sans-serif;background:#fff;outline:none;margin-bottom:16px"/>
+
+          <label style="display:block;font-weight:700;font-size:13px;margin-bottom:7px">What brought you here?</label>
+          <select value="{{ goal }}" onChange="{{ onGoal }}" style="width:100%;border:2px solid #1c1a17;border-radius:12px;padding:14px 16px;font-size:16px;font-family:'Archivo',sans-serif;background:#fff;outline:none;margin-bottom:8px;color:#1c1a17;-webkit-appearance:none;appearance:none">
+            <option value="">Pick one (optional)</option>
+            <option value="Training & strength">Training &amp; strength</option>
+            <option value="Nutrition">Nutrition</option>
+            <option value="Recovery & sleep">Recovery &amp; sleep</option>
+            <option value="Mindset & habits">Mindset &amp; habits</option>
+            <option value="Just here for the show">Just here for the show</option>
+          </select>
+
+          <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+            <div style="color:oklch(0.55 0.18 25);font-size:14px;font-weight:600;margin:8px 2px 0">{{ error }}</div>
+          </sc-if>
+
+          <button onClick="{{ onSubmit }}" style="width:100%;border:none;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:17px;font-weight:800;font-size:17px;font-family:'Archivo',sans-serif;cursor:pointer;margin-top:16px">{{ buttonLabel }}</button>
+          <p style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f;text-align:center;margin:14px 0 0;line-height:1.5">No spam. Unsubscribe anytime.<br>We'll never sell your email — we don't sell anything.</p>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF BAR -->
+  <section style="border-top:1px solid #34322c;border-bottom:1px solid #34322c;background:#211f1a">
+    <div style="max-width:1080px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;text-align:center">
+      <div><div style="font-weight:900;font-size:30px;letter-spacing:-0.02em">12k+</div><div style="font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#8d8778">on the list</div></div>
+      <div style="width:1px;height:36px;background:#34322c"></div>
+      <div><div style="font-weight:900;font-size:30px;letter-spacing:-0.02em">68</div><div style="font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#8d8778">episodes deep</div></div>
+      <div style="width:1px;height:36px;background:#34322c"></div>
+      <div><div style="font-weight:900;font-size:30px;letter-spacing:-0.02em">~1 min</div><div style="font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#8d8778">to read each one</div></div>
+      <div style="width:1px;height:36px;background:#34322c"></div>
+      <div><div style="font-weight:900;font-size:30px;letter-spacing:-0.02em">Weekly</div><div style="font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#8d8778">straight to inbox</div></div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section style="max-width:1080px;margin:0 auto;padding:72px 32px 24px">
+    <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.74 0.15 130);margin-bottom:16px;text-align:center">What lands in your inbox</div>
+    <h2 style="font-weight:900;font-size:44px;line-height:1.0;letter-spacing:-0.03em;margin:0 auto 48px;text-align:center;max-width:680px;text-wrap:balance">Three things, every week. That's it.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div style="background:#211f1a;border:1px solid #34322c;border-radius:18px;padding:32px">
+        <div style="font-family:'Space Mono',monospace;font-size:34px;font-weight:700;color:oklch(0.84 0.16 90);margin-bottom:14px">01</div>
+        <h4 style="font-weight:800;font-size:21px;letter-spacing:-0.02em;margin:0 0 8px">The one thing worth knowing</h4>
+        <p style="font-family:'Newsreader',serif;font-size:17px;color:#bdb8aa;margin:0;line-height:1.5">A single health or wellness story, explained straight — what's real, what's hype, what to do.</p>
+      </div>
+      <div style="background:#211f1a;border:1px solid #34322c;border-radius:18px;padding:32px">
+        <div style="font-family:'Space Mono',monospace;font-size:34px;font-weight:700;color:oklch(0.74 0.15 130);margin-bottom:14px">02</div>
+        <h4 style="font-weight:800;font-size:21px;letter-spacing:-0.02em;margin:0 0 8px">The B.S. of the week</h4>
+        <p style="font-family:'Newsreader',serif;font-size:17px;color:#bdb8aa;margin:0;line-height:1.5">The trend, product, or hot take currently fooling the internet — and why you can skip it.</p>
+      </div>
+      <div style="background:#211f1a;border:1px solid #34322c;border-radius:18px;padding:32px">
+        <div style="font-family:'Space Mono',monospace;font-size:34px;font-weight:700;color:oklch(0.62 0.16 50);margin-bottom:14px">03</div>
+        <h4 style="font-weight:800;font-size:21px;letter-spacing:-0.02em;margin:0 0 8px">The new episode</h4>
+        <p style="font-family:'Newsreader',serif;font-size:17px;color:#bdb8aa;margin:0;line-height:1.5">A two-line preview of this week's show and a link, so you never miss a drop.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="max-width:760px;margin:0 auto;padding:64px 32px 40px">
+    <h2 style="font-weight:900;font-size:34px;letter-spacing:-0.03em;margin:0 0 28px;text-align:center">Quick questions</h2>
+    <div style="display:flex;flex-direction:column;gap:0">
+      <div style="border-top:1px solid #34322c;padding:22px 0">
+        <h4 style="font-weight:800;font-size:19px;margin:0 0 7px">How often will you email me?</h4>
+        <p style="font-family:'Newsreader',serif;font-size:17px;color:#bdb8aa;margin:0;line-height:1.5">Once a week. Occasionally one extra if something genuinely matters. Never daily.</p>
+      </div>
+      <div style="border-top:1px solid #34322c;padding:22px 0">
+        <h4 style="font-weight:800;font-size:19px;margin:0 0 7px">Is it really free?</h4>
+        <p style="font-family:'Newsreader',serif;font-size:17px;color:#bdb8aa;margin:0;line-height:1.5">Yes. No upsell, no "premium tier," no supplement store waiting at the end.</p>
+      </div>
+      <div style="border-top:1px solid #34322c;border-bottom:1px solid #34322c;padding:22px 0">
+        <h4 style="font-weight:800;font-size:19px;margin:0 0 7px">What do you do with my email?</h4>
+        <p style="font-family:'Newsreader',serif;font-size:17px;color:#bdb8aa;margin:0;line-height:1.5">We send you the newsletter. That's the whole list. Unsubscribe in one click whenever.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="max-width:1080px;margin:0 auto;padding:24px 32px 80px;text-align:center">
+    <h2 style="font-weight:900;font-size:40px;letter-spacing:-0.03em;margin:0 0 22px;text-wrap:balance">Ready to cut the noise?</h2>
+    <a href="#" onClick="{{ onScrollTop }}" style="text-decoration:none;display:inline-flex;align-items:center;gap:10px;background:oklch(0.74 0.15 130);color:#1c1a17;border-radius:100px;padding:17px 34px;font-weight:800;font-size:17px">Sign me up →</a>
+    <div style="margin-top:40px">
+      <a href="#" onClick="{{ onToggleOwner }}" style="font-family:'Space Mono',monospace;font-size:11px;color:#46443c;text-decoration:none">· owner ·</a>
+    </div>
+  </section>
+
+  <!-- OWNER / CRM PANEL -->
+  <sc-if value="{{ showOwner }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px">
+      <div style="background:#faf8f3;color:#1c1a17;border-radius:20px;border:2px solid #000;max-width:560px;width:100%;max-height:80vh;overflow:auto;padding:32px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <h3 style="font-weight:900;font-size:24px;letter-spacing:-0.02em;margin:0">Captured leads</h3>
+          <a href="#" onClick="{{ onToggleOwner }}" style="text-decoration:none;color:#8a8579;font-size:24px;line-height:1">×</a>
+        </div>
+        <p style="font-family:'Space Mono',monospace;font-size:12px;color:#8a8579;margin:0 0 18px">{{ captureCount }} stored locally{{ endpointNote }}</p>
+        <div style="display:flex;gap:10px;margin-bottom:18px">
+          <button onClick="{{ onExport }}" style="border:none;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px;font-family:'Archivo',sans-serif;cursor:pointer">Export CSV</button>
+          <button onClick="{{ onClear }}" style="border:1.5px solid #ddd6c8;background:#fff;color:#46433c;border-radius:100px;padding:11px 20px;font-weight:600;font-size:14px;font-family:'Archivo',sans-serif;cursor:pointer">Clear local</button>
+        </div>
+        <div id="owner-list">{{ ownerListEl }}</div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:900},&quot;sheetEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;CRM&quot;,&quot;label&quot;:&quot;Google Sheet / CRM endpoint URL&quot;}}">
+class Component extends DCLogic {
+  state = { name:"", email:"", goal:"", error:"", submitted:false, showOwner:false, captures:[] };
+
+  componentDidMount() {
+    try { this.setState({ captures: JSON.parse(localStorage.getItem("ltp_leads") || "[]") }); } catch(e){}
+  }
+
+  validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+  submit = () => {
+    const { name, email, goal } = this.state;
+    if (!name.trim()) return this.setState({ error:"Pop your first name in." });
+    if (!this.validEmail(email)) return this.setState({ error:"That email doesn't look right." });
+    const rec = { name:name.trim(), email:email.trim(), goal, ts:new Date().toISOString(), source:"newsletter-funnel" };
+
+    // 1) persist locally (always) so nothing is ever lost
+    let all = [];
+    try { all = JSON.parse(localStorage.getItem("ltp_leads") || "[]"); } catch(e){}
+    all.push(rec);
+    try { localStorage.setItem("ltp_leads", JSON.stringify(all)); } catch(e){}
+
+    // 2) push to the Google Sheet / CRM endpoint if configured
+    const endpoint = this.props.sheetEndpoint;
+    if (endpoint) {
+      try {
+        fetch(endpoint, {
+          method:"POST", mode:"no-cors",
+          headers:{ "Content-Type":"application/x-www-form-urlencoded" },
+          body: new URLSearchParams(rec).toString(),
+        }).catch(()=>{});
+      } catch(e){}
+    }
+
+    this.setState({ submitted:true, captures:all, error:"", name:"", email:"", goal:"" });
+  };
+
+  exportCSV = (e) => {
+    if (e) e.preventDefault();
+    const rows = this.state.captures;
+    if (!rows.length) return;
+    const cols = ["ts","name","email","goal","source"];
+    const esc = v => '"' + String(v==null?"":v).replace(/"/g,'""') + '"';
+    const csv = [cols.join(",")].concat(rows.map(r => cols.map(c => esc(r[c])).join(","))).join("\n");
+    const blob = new Blob([csv], { type:"text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "longthick-leads.csv";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+  };
+
+  clearLocal = (e) => {
+    if (e) e.preventDefault();
+    try { localStorage.setItem("ltp_leads","[]"); } catch(err){}
+    this.setState({ captures:[] });
+  };
+
+  renderVals() {
+    const { name, email, goal, error, submitted, showOwner, captures } = this.state;
+    const list = React.createElement("div", { style:{ display:"flex", flexDirection:"column", gap:"8px" } },
+      captures.length === 0
+        ? React.createElement("div", { style:{ fontFamily:"'Newsreader',serif", fontSize:"16px", color:"#8a8579" } }, "No leads captured yet.")
+        : captures.slice().reverse().map((r,i) =>
+            React.createElement("div", { key:i, style:{ display:"flex", justifyContent:"space-between", gap:"12px", borderBottom:"1px solid #e8e3d8", padding:"10px 0" } },
+              React.createElement("div", null,
+                React.createElement("div", { style:{ fontWeight:700, fontSize:"15px" } }, r.name),
+                React.createElement("div", { style:{ fontSize:"14px", color:"#6b665b" } }, r.email)
+              ),
+              React.createElement("div", { style:{ fontFamily:"'Space Mono',monospace", fontSize:"11px", color:"#a59f8f", textAlign:"right", whiteSpace:"nowrap" } },
+                (r.goal || "—"))
+            ))
+    );
+    return {
+      name, email, goal, error,
+      submitted, notSubmitted: !submitted,
+      showOwner,
+      buttonLabel: "Sign me up — free",
+      captureCount: captures.length + (captures.length === 1 ? " lead" : " leads"),
+      endpointNote: this.props.sheetEndpoint ? " · syncing to your sheet" : " · no sheet connected yet",
+      ownerListEl: list,
+      onName: (e) => this.setState({ name:e.target.value, error:"" }),
+      onEmail: (e) => this.setState({ email:e.target.value, error:"" }),
+      onGoal: (e) => this.setState({ goal:e.target.value }),
+      onSubmit: (e) => { if(e) e.preventDefault(); this.submit(); },
+      onToggleOwner: (e) => { if(e) e.preventDefault(); this.setState({ showOwner:!showOwner }); },
+      onExport: this.exportCSV,
+      onClear: this.clearLocal,
+      onScrollTop: (e) => { if(e) e.preventDefault(); window.scrollTo({ top:0, behavior:"smooth" }); },
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,18,400;0,18,500;1,18,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#faf8f3}
+  ::selection{background:oklch(0.84 0.16 90);color:#1c1a17}
+</style>
+</helmet>
+
+<div style="background:#faf8f3;color:#1c1a17;font-family:'Archivo',sans-serif;min-height:100vh">
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(250,248,243,0.88);backdrop-filter:blur(10px);border-bottom:1px solid #e8e3d8">
+    <div style="max-width:1200px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between">
+      <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:11px">
+        <div style="width:30px;height:30px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #1c1a17"></div>
+        <span style="font-weight:900;font-size:17px;letter-spacing:-0.01em">THE LONG &amp; THICK</span>
+      </a>
+      <nav style="display:flex;gap:34px;font-size:15px;font-weight:600;color:#46433c">
+        <a href="Episodes.dc.html" style="color:inherit;text-decoration:none">Episodes</a>
+        <a href="Articles.dc.html" style="color:#1c1a17;text-decoration:none;border-bottom:2px solid oklch(0.74 0.15 130);padding-bottom:2px">Articles</a>
+        <a href="Merch.dc.html" style="color:inherit;text-decoration:none">Merch</a>
+        <a href="index.html#about" style="color:inherit;text-decoration:none">About</a>
+      </nav>
+      <a href="Newsletter Funnel.dc.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:10px 20px;font-weight:600;font-size:14px">Newsletter</a>
+    </div>
+  </header>
+
+  <!-- PAGE HEAD -->
+  <section style="max-width:1200px;margin:0 auto;padding:64px 32px 8px">
+    <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:16px">Reading, not just listening</div>
+    <h1 style="font-weight:900;font-size:120px;line-height:0.82;letter-spacing:-0.045em;text-transform:uppercase;margin:0 0 24px">Articles</h1>
+    <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 8px">Long-form breakdowns of the stuff we geek out about — sourced, a little sarcastic, and always free to read.</p>
+  </section>
+
+  <!-- CATEGORY FILTER (visual) -->
+  <section style="max-width:1200px;margin:0 auto;padding:24px 32px 8px">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <span style="background:#1c1a17;color:#faf8f3;border-radius:100px;padding:9px 18px;font-weight:700;font-size:13px;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">All</span>
+      <span style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:9px 18px;font-weight:600;font-size:13px;color:#46433c;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">Nutrition</span>
+      <span style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:9px 18px;font-weight:600;font-size:13px;color:#46433c;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">Recovery</span>
+      <span style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:9px 18px;font-weight:600;font-size:13px;color:#46433c;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">Training</span>
+      <span style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:9px 18px;font-weight:600;font-size:13px;color:#46433c;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">Mindset</span>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE -->
+  <section style="max-width:1200px;margin:0 auto;padding:32px 32px 8px">
+    <a href="#" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:2px solid #1c1a17;border-radius:20px;overflow:hidden;background:#fff">
+      <div style="aspect-ratio:16/11;background-image:repeating-linear-gradient(45deg,#ece7da 0 12px,#f4efe5 12px 24px);display:flex;align-items:center;justify-content:center"><span style="font-family:'Space Mono',monospace;font-size:12px;color:#a59f8f">featured image 16:11</span></div>
+      <div style="padding:48px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:oklch(0.62 0.16 50);margin-bottom:14px">Featured · Nutrition · 9 min read</div>
+        <h2 style="font-weight:900;font-size:40px;line-height:1.02;letter-spacing:-0.03em;margin:0 0 16px">The microplastics panic, ranked by how much you should actually care</h2>
+        <p style="font-family:'Newsreader',serif;font-size:19px;line-height:1.5;color:#46433c;margin:0 0 24px">Everyone's terrified of the water bottle. We sort the genuine concerns from the doom-scrolling — and tell you the three changes that are actually worth your effort.</p>
+        <span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#1c1a17">Read the article →</span>
+      </div>
+    </a>
+  </section>
+
+  <!-- ARTICLE GRID -->
+  <section style="max-width:1200px;margin:0 auto;padding:48px 32px 24px">
+    <div style="border-top:2px solid #1c1a17;padding-top:20px;margin-bottom:28px">
+      <h2 style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin:0">More reading</h2>
+    </div>
+    <div id="art-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px">
+      <sc-for list="{{ articles }}" as="a" hint-placeholder-count="6">
+        <a href="#" style="text-decoration:none;color:inherit;display:block;border-bottom:2px solid #1c1a17;padding-bottom:20px">
+          <div style="aspect-ratio:4/3;border-radius:14px;background-image:repeating-linear-gradient(45deg,#ece7da 0 11px,#f4efe5 11px 22px);display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f">image 4:3</span></div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="width:8px;height:8px;border-radius:50%;background:{{ a.dot }}"></span>
+            <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#a59f8f">{{ a.meta }}</span>
+          </div>
+          <h4 style="font-weight:800;font-size:22px;line-height:1.08;letter-spacing:-0.02em;margin:0 0 8px">{{ a.t }}</h4>
+          <p style="font-family:'Newsreader',serif;font-size:16px;color:#6b665b;margin:0;line-height:1.45">{{ a.d }}</p>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER CTA -->
+  <section style="background:#1c1a17;color:#faf8f3;margin-top:40px">
+    <div style="max-width:1200px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.74 0.15 130);margin-bottom:14px">Straight to your inbox</div>
+        <h2 style="font-weight:900;font-size:40px;line-height:1.0;letter-spacing:-0.03em;margin:0 0 12px">Read the best of it weekly.</h2>
+        <p style="font-family:'Newsreader',serif;font-size:18px;line-height:1.5;color:#bdb8aa;margin:0;max-width:480px">One short, no-fluff email a week — the article worth your time and the noise worth ignoring.</p>
+      </div>
+      <a href="Newsletter Funnel.dc.html" style="justify-self:start;text-decoration:none;background:oklch(0.74 0.15 130);color:#1c1a17;border-radius:100px;padding:16px 30px;font-weight:700;font-size:16px">Join the newsletter →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#1c1a17;color:#bdb8aa;border-top:1px solid #34322c">
+    <div style="max-width:1200px;margin:0 auto;padding:56px 32px 40px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px">
+        <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:11px">
+          <div style="width:30px;height:30px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #faf8f3"></div>
+          <span style="font-weight:900;font-size:17px;letter-spacing:-0.01em;color:#faf8f3">THE LONG &amp; THICK</span>
+        </a>
+        <div style="display:flex;gap:48px;font-size:14px">
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <span style="font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7a7568">Listen</span>
+            <span>YouTube</span><span>Spotify</span><span>Apple Podcasts</span><span>iHeartRadio</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <span style="font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7a7568">Explore</span>
+            <a href="Episodes.dc.html" style="color:inherit;text-decoration:none">Episodes</a><a href="Articles.dc.html" style="color:inherit;text-decoration:none">Articles</a><a href="Merch.dc.html" style="color:inherit;text-decoration:none">Merch</a><a href="Newsletter Funnel.dc.html" style="color:inherit;text-decoration:none">Newsletter</a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <span style="font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7a7568">Community</span>
+            <a href="#" style="color:inherit;text-decoration:none">Patreon</a><a href="#" style="color:inherit;text-decoration:none">Discord</a><span>Instagram</span><span>TikTok</span><span>X / Twitter</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:48px;padding-top:24px;border-top:1px solid #34322c;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:12px;color:#7a7568;flex-wrap:wrap;gap:12px">
+        <span>© 2026 The Long &amp; Thick Podcast. Strong body, examined life.</span>
+        <span>Hosted by Ronnie &amp; Daniel</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const dot = {Nutrition:"oklch(0.62 0.16 50)",Recovery:"oklch(0.74 0.15 130)",Training:"oklch(0.55 0.13 250)",Mindset:"oklch(0.78 0.15 75)"};
+    const arts = [
+      {cat:"Recovery", read:"6 min", t:"Sauna, cold plunge, sleep: which recovery tools earn their hype", d:"We line up the most-hyped recovery rituals against the evidence and rank what's worth it."},
+      {cat:"Mindset", read:"5 min", t:"You don't suck at time management — you just have no system", d:"Why discipline keeps failing you, and the dead-simple structure that beats willpower."},
+      {cat:"Training", read:"8 min", t:"The minimum effective dose of strength training", d:"How little you can actually get away with and still get stronger. Spoiler: less than you think."},
+      {cat:"Nutrition", read:"7 min", t:"Protein targets, demystified for normal people", d:"How much you really need, where the numbers come from, and how to hit them without obsessing."},
+      {cat:"Recovery", read:"6 min", t:"Why your sleep tracker might be making sleep worse", d:"The anxiety loop of chasing a perfect sleep score, and what to watch instead."},
+      {cat:"Training", read:"9 min", t:"Mobility isn't stretching — here's what actually works", d:"The difference between flexibility and usable range, and the drills that build the good kind."},
+    ];
+    return {
+      articles: arts.map(a => ({
+        dot: dot[a.cat] || "#999",
+        meta: a.cat + " · " + a.read + " read",
+        t: a.t,
+        d: a.d,
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

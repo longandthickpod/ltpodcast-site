@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,18,400;0,18,500;1,18,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#faf8f3}
+  ::selection{background:oklch(0.84 0.16 90);color:#1c1a17}
+</style>
+</helmet>
+
+<div style="background:#faf8f3;color:#1c1a17;font-family:'Archivo',sans-serif;min-height:100vh">
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(250,248,243,0.88);backdrop-filter:blur(10px);border-bottom:1px solid #e8e3d8">
+    <div style="max-width:1200px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between">
+      <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:11px">
+        <div style="width:30px;height:30px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #1c1a17"></div>
+        <span style="font-weight:900;font-size:17px;letter-spacing:-0.01em">THE LONG &amp; THICK</span>
+      </a>
+      <nav style="display:flex;gap:34px;font-size:15px;font-weight:600;color:#46433c">
+        <a href="Episodes.dc.html" style="color:#1c1a17;text-decoration:none;border-bottom:2px solid oklch(0.74 0.15 130);padding-bottom:2px">Episodes</a>
+        <a href="Articles.dc.html" style="color:inherit;text-decoration:none">Articles</a>
+        <a href="Merch.dc.html" style="color:inherit;text-decoration:none">Merch</a>
+        <a href="index.html#about" style="color:inherit;text-decoration:none">About</a>
+      </nav>
+      <a href="Newsletter Funnel.dc.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:10px 20px;font-weight:600;font-size:14px">Newsletter</a>
+    </div>
+  </header>
+
+  <!-- PAGE HEAD -->
+  <section style="max-width:1200px;margin:0 auto;padding:64px 32px 8px">
+    <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:16px">The full catalog</div>
+    <h1 style="font-weight:900;font-size:120px;line-height:0.82;letter-spacing:-0.045em;text-transform:uppercase;margin:0 0 24px">Episodes</h1>
+    <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 36px">Sixty-eight episodes deep and counting. Training, recovery, nutrition, and the wellness nonsense we love to take apart — new drops every week.</p>
+    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+      <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579">Listen &amp; watch on</span>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div style="background:#1c1a17;color:#faf8f3;border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px">YouTube</div>
+        <div style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:11px 20px;font-weight:600;font-size:14px;color:#46433c">Spotify</div>
+        <div style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:11px 20px;font-weight:600;font-size:14px;color:#46433c">Apple Podcasts</div>
+        <div style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:11px 20px;font-weight:600;font-size:14px;color:#46433c">iHeartRadio</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section style="max-width:1200px;margin:0 auto;padding:48px 32px 8px">
+    <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:2px solid #1c1a17;border-radius:20px;overflow:hidden;background:#fff">
+      <div style="aspect-ratio:16/10;position:relative;overflow:hidden">
+        <img src="assets/hosts-seated-2.jpg" alt="Latest episode" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+        <div style="position:absolute;left:24px;bottom:24px;width:64px;height:64px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;z-index:2">
+          <span style="width:0;height:0;border-left:16px solid #1c1a17;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px"></span>
+        </div>
+        <div style="position:absolute;top:20px;left:20px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;background:oklch(0.84 0.16 90);color:#1c1a17;padding:7px 13px;border-radius:100px;z-index:2">Latest</div>
+      </div>
+      <div style="padding:44px;display:flex;flex-direction:column;justify-content:center">
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#a59f8f;margin-bottom:14px">Ep 68 · 1 hr 04 min · this week</div>
+        <h3 style="font-weight:900;font-size:38px;line-height:1.02;letter-spacing:-0.025em;margin:0 0 16px">Ozempic, Gym Cults &amp; Insta Delusion</h3>
+        <p style="font-family:'Newsreader',serif;font-size:19px;line-height:1.5;color:#46433c;margin:0 0 26px">Are weight-loss drugs, "optimal" training and social media helping or hurting the wellness world? We cut through the noise with some nuance, some science, and a little dark humor.</p>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="display:flex;align-items:center;gap:9px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:12px 22px;font-weight:700;font-size:15px"><span style="width:0;height:0;border-left:10px solid oklch(0.74 0.15 130);border-top:6px solid transparent;border-bottom:6px solid transparent"></span>Play now</div>
+          <div style="border:1.5px solid #ddd6c8;border-radius:100px;padding:11px 20px;font-weight:600;font-size:14px;color:#46433c">Show notes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL EPISODES LIST -->
+  <section style="max-width:1200px;margin:0 auto;padding:56px 32px 24px">
+    <div style="border-top:2px solid #1c1a17;padding-top:20px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:baseline">
+      <h2 style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin:0">All episodes</h2>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;color:#a59f8f">68 total</span>
+    </div>
+    <sc-for list="{{ episodes }}" as="ep" hint-placeholder-count="8">
+      <a href="#" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:64px 1fr auto;gap:24px;align-items:center;padding:24px 8px;border-bottom:1px solid #e8e3d8">
+        <div style="font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:#c9c2b2">{{ ep.num }}</div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <span style="width:8px;height:8px;border-radius:50%;background:{{ ep.dot }}"></span>
+            <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#a59f8f">{{ ep.meta }}</span>
+          </div>
+          <h4 style="font-weight:800;font-size:24px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 4px">{{ ep.t }}</h4>
+          <p style="font-family:'Newsreader',serif;font-size:16px;color:#6b665b;margin:0;line-height:1.4;max-width:680px">{{ ep.d }}</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;justify-self:end;border:1.5px solid #1c1a17;border-radius:100px;padding:10px 18px;font-weight:700;font-size:14px;white-space:nowrap"><span style="width:0;height:0;border-left:9px solid #1c1a17;border-top:5px solid transparent;border-bottom:5px solid transparent"></span>Play</div>
+      </a>
+    </sc-for>
+  </section>
+
+  <!-- NEWSLETTER CTA -->
+  <section style="background:#1c1a17;color:#faf8f3;margin-top:40px">
+    <div style="max-width:1200px;margin:0 auto;padding:64px 32px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:48px;align-items:center">
+      <div>
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(0.74 0.15 130);margin-bottom:14px">Never miss a drop</div>
+        <h2 style="font-weight:900;font-size:40px;line-height:1.0;letter-spacing:-0.03em;margin:0 0 12px">New episode every week.</h2>
+        <p style="font-family:'Newsreader',serif;font-size:18px;line-height:1.5;color:#bdb8aa;margin:0;max-width:480px">Get each one in your inbox the morning it lands, plus a short read on what's worth your attention.</p>
+      </div>
+      <a href="Newsletter Funnel.dc.html" style="justify-self:start;text-decoration:none;background:oklch(0.74 0.15 130);color:#1c1a17;border-radius:100px;padding:16px 30px;font-weight:700;font-size:16px">Join the newsletter →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#1c1a17;color:#bdb8aa;border-top:1px solid #34322c">
+    <div style="max-width:1200px;margin:0 auto;padding:56px 32px 40px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px">
+        <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:11px">
+          <div style="width:30px;height:30px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #faf8f3"></div>
+          <span style="font-weight:900;font-size:17px;letter-spacing:-0.01em;color:#faf8f3">THE LONG &amp; THICK</span>
+        </a>
+        <div style="display:flex;gap:48px;font-size:14px">
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <span style="font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7a7568">Listen</span>
+            <span>YouTube</span><span>Spotify</span><span>Apple Podcasts</span><span>iHeartRadio</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <span style="font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7a7568">Explore</span>
+            <a href="Episodes.dc.html" style="color:inherit;text-decoration:none">Episodes</a><a href="Articles.dc.html" style="color:inherit;text-decoration:none">Articles</a><a href="Merch.dc.html" style="color:inherit;text-decoration:none">Merch</a><a href="Newsletter Funnel.dc.html" style="color:inherit;text-decoration:none">Newsletter</a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px">
+            <span style="font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7a7568">Community</span>
+            <a href="#" style="color:inherit;text-decoration:none">Patreon</a><a href="#" style="color:inherit;text-decoration:none">Discord</a><span>Instagram</span><span>TikTok</span><span>X / Twitter</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:48px;padding-top:24px;border-top:1px solid #34322c;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:12px;color:#7a7568;flex-wrap:wrap;gap:12px">
+        <span>© 2026 The Long &amp; Thick Podcast. Strong body, examined life.</span>
+        <span>Hosted by Ronnie &amp; Daniel</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const dot = {Nutrition:"oklch(0.62 0.16 50)",Recovery:"oklch(0.74 0.15 130)",Mindset:"oklch(0.78 0.15 75)",Training:"oklch(0.55 0.13 250)",Sleep:"oklch(0.5 0.12 300)",Guest:"oklch(0.66 0.16 25)"};
+    const eps = [
+      {n:67, dur:"52 min", cat:"Nutrition", t:"Muscle, Microplastics & Misinformation", d:"Hot takes on the weirdest fitness trends online right now. Less paranoia, more protein."},
+      {n:66, dur:"47 min", cat:"Recovery", t:"The 4 Buckets of Recovery", d:"A no-BS guide to what actually matters when you're repairing your body and bouncing back."},
+      {n:65, dur:"1 hr 01 min", cat:"Mindset", t:"Discipline Is Overrated, Systems Aren't", d:"Why willpower keeps failing you, and the boring structure that quietly wins instead."},
+      {n:64, dur:"55 min", cat:"Training", t:"Zone 2, Heart Rate & The Cardio Cult", d:"How much steady-state cardio you actually need, minus the wearable-fueled anxiety."},
+      {n:63, dur:"49 min", cat:"Sleep", t:"Sleep Hacks That Are Mostly Nonsense", d:"Mouth tape, magnesium, blue-light glasses — what survives scrutiny and what's theater."},
+      {n:62, dur:"58 min", cat:"Training", t:"What You Actually NEED to Train", d:"From a yoga mat and rage to strongman setups — the training tiers that fit your space."},
+      {n:61, dur:"44 min", cat:"Nutrition", t:"Protein, Carbs & The Macro Wars", d:"We settle the dumbest internet arguments about what to eat, with actual evidence."},
+      {n:60, dur:"1 hr 12 min", cat:"Guest", t:"A Physio On The Injuries You're Ignoring", d:"The aches you've normalized, why they linger, and the corrective work that fixes them."},
+      {n:59, dur:"51 min", cat:"Mindset", t:"Motivation Is A Liar", d:"Why waiting to feel ready never works, and what to lean on when you don't."},
+      {n:58, dur:"46 min", cat:"Recovery", t:"Cold Plunge, Sauna & The Hype Economy", d:"Which recovery tools earn their price tag and which are just expensive vibes."},
+      {n:57, dur:"53 min", cat:"Nutrition", t:"Supplements: The Short List That Works", d:"Most of the cabinet is a waste. Here's the handful with real evidence behind them."},
+      {n:56, dur:"59 min", cat:"Training", t:"Mobility Isn't Stretching", d:"Why touching your toes won't fix your hips, and what actually builds usable range."},
+    ];
+    return {
+      episodes: eps.map(e => ({
+        num: String(e.n).padStart(2,'0'),
+        dot: dot[e.cat] || '#999',
+        meta: e.cat + " · " + e.dur,
+        t: e.t,
+        d: e.d,
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>
