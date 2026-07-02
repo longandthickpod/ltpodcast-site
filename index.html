@@ -40,6 +40,42 @@
     [style*="font-size: 38px"]{font-size:25px !important}
     [style*="font-size: 36px"]{font-size:24px !important}
     [style*="font-size: 34px"]{font-size:23px !important}
+    /* mobile-extra */
+    [data-nav-cta]{display:none !important}
+
+    /* Episodes & Articles → swipeable carousel */
+    [data-carousel]{
+      display:flex !important;
+      grid-template-columns:none !important;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      margin-left:-32px;margin-right:-32px;
+      padding:4px 32px 14px;
+      gap:16px !important;
+    }
+    [data-carousel]::-webkit-scrollbar{display:none}
+    [data-carousel] > *{
+      flex:0 0 80%;
+      scroll-snap-align:start;
+    }
+
+    /* 01·02·03 band → compact, no tall vertical scroll */
+    [data-promise]{grid-template-columns:1fr !important}
+    [data-promise] > div{
+      padding:18px 0 !important;
+      border-right:none !important;
+      border-bottom:1px solid #e0d9c9 !important;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      column-gap:16px;
+      align-items:baseline;
+    }
+    [data-promise] > div:last-child{border-bottom:none !important}
+    [data-promise] > div > div:first-child{font-size:26px !important;margin-bottom:0 !important;grid-row:1 / span 2}
+    [data-promise] > div > h4{margin:0 !important}
+    [data-promise] > div > p{margin:4px 0 0 !important;grid-column:2}
   }
 </style>
 </helmet>
@@ -59,7 +95,7 @@
         <a href="Merch.dc.html" style="color:inherit;text-decoration:none">Merch</a>
         <a href="#about" style="color:inherit;text-decoration:none">About</a>
       </nav>
-      <a href="#listen" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:10px 20px;font-weight:600;font-size:14px">
+      <a data-nav-cta href="#listen" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:10px 20px;font-weight:600;font-size:14px">
         <span style="width:0;height:0;border-left:9px solid oklch(0.74 0.15 130);border-top:5px solid transparent;border-bottom:5px solid transparent"></span>Listen
       </a>
     </div>
@@ -147,7 +183,7 @@
 
   <!-- ===================== EPISODE GRID ===================== -->
   <section style="max-width:1200px;margin:0 auto;padding:48px 32px 24px">
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <div data-carousel style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
 
       <div style="border:1.5px solid #e8e3d8;border-radius:16px;overflow:hidden;background:#fff">
         <div style="aspect-ratio:16/9;background-image:repeating-linear-gradient(45deg,#ece7da 0 11px,#f4efe5 11px 22px);display:flex;align-items:center;justify-content:center"><span style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f">thumb 16:9</span></div>
@@ -184,7 +220,7 @@
 
   <!-- ===================== NO-BS PROMISE ===================== -->
   <section style="max-width:1200px;margin:0 auto;padding:56px 32px">
-    <div style="border-top:2px solid #1c1a17;border-bottom:2px solid #1c1a17;display:grid;grid-template-columns:repeat(3,1fr)">
+    <div data-promise style="border-top:2px solid #1c1a17;border-bottom:2px solid #1c1a17;display:grid;grid-template-columns:repeat(3,1fr)">
       <div style="padding:36px 32px 36px 0;border-right:1px solid #e0d9c9">
         <div style="font-family:'Space Mono',monospace;font-size:38px;font-weight:700;color:oklch(0.66 0.16 135);margin-bottom:12px">01</div>
         <h4 style="font-weight:800;font-size:22px;letter-spacing:-0.02em;margin:0 0 8px">Science-backed</h4>
@@ -255,7 +291,7 @@
         <p style="font-family:'Newsreader',serif;font-size:20px;line-height:1.5;color:#46433c;margin:0 0 6px;max-width:460px">Some things land better on the page. Long-form breakdowns of what we geek out about — sourced, a little sarcastic, and always free to read.</p>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+    <div data-carousel style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
       <div style="border-bottom:2px solid #1c1a17;padding-bottom:20px">
         <div style="aspect-ratio:4/3;border-radius:14px;background-image:repeating-linear-gradient(45deg,#ece7da 0 11px,#f4efe5 11px 22px);display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f">article image 4:3</span></div>
         <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.62 0.16 50);margin-bottom:8px">Nutrition</div>

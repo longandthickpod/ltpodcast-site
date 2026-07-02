@@ -40,6 +40,10 @@
     [style*="font-size: 38px"]{font-size:25px !important}
     [style*="font-size: 36px"]{font-size:24px !important}
     [style*="font-size: 34px"]{font-size:23px !important}
+    /* mobile-extra */
+    [data-nav-cta]{display:none !important}
+    [data-ep-row]{grid-template-columns:auto 1fr !important;gap:6px 14px !important;align-items:start !important;padding:18px 4px !important}
+    [data-ep-row] > *:nth-child(3){grid-column:1 / -1;justify-self:start !important;margin-top:4px}
   }
 </style>
 </helmet>
@@ -59,7 +63,7 @@
         <a href="Merch.dc.html" style="color:inherit;text-decoration:none">Merch</a>
         <a href="index.html#about" style="color:inherit;text-decoration:none">About</a>
       </nav>
-      <a href="Newsletter Funnel.dc.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:10px 20px;font-weight:600;font-size:14px">Newsletter</a>
+      <a data-nav-cta href="Newsletter Funnel.dc.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:10px 20px;font-weight:600;font-size:14px">Newsletter</a>
     </div>
   </header>
 
@@ -108,7 +112,7 @@
       <span style="font-family:'Space Mono',monospace;font-size:13px;color:#a59f8f">68 total</span>
     </div>
     <sc-for list="{{ episodes }}" as="ep" hint-placeholder-count="8">
-      <a href="#" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:64px 1fr auto;gap:24px;align-items:center;padding:24px 8px;border-bottom:1px solid #e8e3d8">
+      <a data-ep-row href="#" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:64px 1fr auto;gap:24px;align-items:center;padding:24px 8px;border-bottom:1px solid #e8e3d8">
         <div style="font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:#c9c2b2">{{ ep.num }}</div>
         <div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">

@@ -40,6 +40,11 @@
     [style*="font-size: 38px"]{font-size:25px !important}
     [style*="font-size: 36px"]{font-size:24px !important}
     [style*="font-size: 34px"]{font-size:23px !important}
+    /* mobile-extra */
+    [data-nav-cta]{display:none !important}
+    [data-carousel]{display:flex !important;grid-template-columns:none !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-left:-32px;margin-right:-32px;padding:4px 32px 14px;gap:16px !important}
+    [data-carousel]::-webkit-scrollbar{display:none}
+    [data-carousel] > *{flex:0 0 80%;scroll-snap-align:start}
   }
 </style>
 </helmet>
@@ -59,7 +64,7 @@
         <a href="Merch.dc.html" style="color:inherit;text-decoration:none">Merch</a>
         <a href="index.html#about" style="color:inherit;text-decoration:none">About</a>
       </nav>
-      <a href="Newsletter Funnel.dc.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:10px 20px;font-weight:600;font-size:14px">Newsletter</a>
+      <a data-nav-cta href="Newsletter Funnel.dc.html" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:10px 20px;font-weight:600;font-size:14px">Newsletter</a>
     </div>
   </header>
 
@@ -99,7 +104,7 @@
     <div style="border-top:2px solid #1c1a17;padding-top:20px;margin-bottom:28px">
       <h2 style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin:0">More reading</h2>
     </div>
-    <div id="art-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px">
+    <div data-carousel id="art-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px">
       <sc-for list="{{ articles }}" as="a" hint-placeholder-count="6">
         <a href="#" style="text-decoration:none;color:inherit;display:block;border-bottom:2px solid #1c1a17;padding-bottom:20px">
           <div style="aspect-ratio:4/3;border-radius:14px;background-image:repeating-linear-gradient(45deg,#ece7da 0 11px,#f4efe5 11px 22px);display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f">image 4:3</span></div>
