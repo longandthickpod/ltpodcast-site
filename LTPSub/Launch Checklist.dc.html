@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,18,400;0,18,500;1,18,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#faf8f3}
+  ::selection{background:oklch(0.84 0.16 90);color:#1c1a17}
+  .step:hover{background:#f4f0e7}
+  /* mobile-opt */
+  @media (max-width:768px){
+    html,body{overflow-x:hidden}
+    img{max-width:100%}
+    header > div{flex-wrap:wrap;padding-top:12px !important;padding-bottom:12px !important}
+    header nav{order:3;width:100%;justify-content:center;gap:18px !important;font-size:14px !important}
+    [style*="grid-template-columns"]{grid-template-columns:1fr !important}
+    [style*="gap: 64px"]{gap:30px !important}
+    [style*="gap: 56px"]{gap:28px !important}
+    [style*="font-size: 120px"]{font-size:52px !important}
+    [style*="font-size: 96px"]{font-size:44px !important}
+    [style*="font-size: 88px"]{font-size:42px !important}
+    [style*="font-size: 84px"]{font-size:40px !important}
+    [style*="font-size: 80px"]{font-size:40px !important}
+    [style*="font-size: 76px"]{font-size:38px !important}
+    [style*="font-size: 72px"]{font-size:38px !important}
+    [style*="font-size: 64px"]{font-size:36px !important}
+    [style*="font-size: 48px"]{font-size:30px !important}
+    [style*="font-size: 46px"]{font-size:29px !important}
+    [style*="font-size: 44px"]{font-size:28px !important}
+    [style*="font-size: 42px"]{font-size:27px !important}
+    [style*="font-size: 40px"]{font-size:26px !important}
+    [style*="font-size: 38px"]{font-size:25px !important}
+    [style*="font-size: 36px"]{font-size:24px !important}
+    [style*="font-size: 34px"]{font-size:23px !important}
+  }
+</style>
+</helmet>
+
+<div style="background:#faf8f3;color:#1c1a17;font-family:'Archivo',sans-serif;min-height:100vh">
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(250,248,243,0.88);backdrop-filter:blur(10px);border-bottom:1px solid #e8e3d8">
+    <div style="max-width:1100px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between">
+      <a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:11px">
+        <div style="width:30px;height:30px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #1c1a17"></div>
+        <span style="font-weight:900;font-size:17px;letter-spacing:-0.01em">THE LONG &amp; THICK</span>
+      </a>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;color:#8a8579">Internal · Launch guide</span>
+    </div>
+  </header>
+
+  <!-- HEAD -->
+  <section style="max-width:860px;margin:0 auto;padding:56px 32px 24px">
+    <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:16px">For you, not visitors</div>
+    <h1 style="font-weight:900;font-size:64px;line-height:0.9;letter-spacing:-0.04em;margin:0 0 20px;text-wrap:balance">Get this site live</h1>
+    <p style="font-family:'Newsreader',serif;font-size:21px;line-height:1.55;color:#46433c;max-width:640px;margin:0 0 24px">A plain-English, click-by-click path from "files on a screen" to "ltpodcast.com is live." No coding. Tick each box as you go — your progress saves automatically.</p>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:#fff;border:2px solid #1c1a17;border-radius:16px;padding:18px 22px">
+      <div style="font-family:'Space Mono',monospace;font-size:13px;text-transform:uppercase;letter-spacing:0.06em;color:#8a8579">Progress</div>
+      <div style="flex:1;min-width:160px;height:12px;background:#ece7da;border-radius:100px;overflow:hidden"><div style="height:100%;width:{{ pct }};background:oklch(0.74 0.15 130);transition:width .25s"></div></div>
+      <div style="font-weight:800;font-size:16px">{{ progressLabel }}</div>
+    </div>
+  </section>
+
+  <!-- COST SNAPSHOT -->
+  <section style="max-width:860px;margin:0 auto;padding:8px 32px 16px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="background:#1c1a17;color:#faf8f3;border-radius:16px;padding:24px"><div style="font-weight:900;font-size:30px;letter-spacing:-0.02em;margin-bottom:4px">$0<span style="font-size:16px;color:#bdb8aa">/mo</span></div><div style="font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#8d8778">Hosting (Cloudflare)</div></div>
+      <div style="background:#1c1a17;color:#faf8f3;border-radius:16px;padding:24px"><div style="font-weight:900;font-size:30px;letter-spacing:-0.02em;margin-bottom:4px">$0<span style="font-size:16px;color:#bdb8aa"> extra</span></div><div style="font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#8d8778">Domain (you own it)</div></div>
+      <div style="background:#1c1a17;color:#faf8f3;border-radius:16px;padding:24px"><div style="font-weight:900;font-size:30px;letter-spacing:-0.02em;margin-bottom:4px">~1–2<span style="font-size:16px;color:#bdb8aa"> hrs</span></div><div style="font-family:'Space Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#8d8778">One-time setup</div></div>
+    </div>
+  </section>
+
+  <!-- PHASE 1 -->
+  <section style="max-width:860px;margin:0 auto;padding:40px 32px 8px">
+    <div style="display:flex;align-items:baseline;gap:14px;border-top:2px solid #1c1a17;padding-top:22px;margin-bottom:8px">
+      <span style="font-family:'Space Mono',monospace;font-size:34px;font-weight:700;color:oklch(0.62 0.16 50)">01</span>
+      <h2 style="font-weight:900;font-size:34px;letter-spacing:-0.03em;margin:0">Put the files online (GitHub)</h2>
+    </div>
+    <p style="font-family:'Newsreader',serif;font-size:18px;color:#6b665b;margin:0 0 8px;line-height:1.5">GitHub is just storage for your site's files, with a built-in undo history. You upload by drag-and-drop in your browser — no command line.</p>
+    <sc-for list="{{ phase1 }}" as="s" hint-placeholder-count="3">
+      <div onClick="{{ s.toggle }}" class="step" style="display:flex;gap:16px;align-items:flex-start;padding:18px 10px;border-bottom:1px solid #e8e3d8;cursor:pointer;border-radius:10px">
+        <div style="flex:none;width:28px;height:28px;border-radius:8px;border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;background:{{ s.boxBg }};margin-top:1px">
+          <sc-if value="{{ s.checked }}" hint-placeholder-val="{{ false }}"><span style="color:#1c1a17;font-weight:900;font-size:15px">✓</span></sc-if>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:18px;line-height:1.3">{{ s.title }}</div>
+          <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Newsreader',serif;font-size:16px;color:#8a8579;margin-top:4px;line-height:1.45">{{ s.note }}</div></sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- PHASE 2 -->
+  <section style="max-width:860px;margin:0 auto;padding:32px 32px 8px">
+    <div style="display:flex;align-items:baseline;gap:14px;border-top:2px solid #1c1a17;padding-top:22px;margin-bottom:8px">
+      <span style="font-family:'Space Mono',monospace;font-size:34px;font-weight:700;color:oklch(0.74 0.15 130)">02</span>
+      <h2 style="font-weight:900;font-size:34px;letter-spacing:-0.03em;margin:0">Publish it (Cloudflare Pages)</h2>
+    </div>
+    <p style="font-family:'Newsreader',serif;font-size:18px;color:#6b665b;margin:0 0 8px;line-height:1.5">Cloudflare connects to your GitHub repo and puts the site on the internet. After this, every change you upload to GitHub goes live automatically.</p>
+    <sc-for list="{{ phase2 }}" as="s" hint-placeholder-count="4">
+      <div onClick="{{ s.toggle }}" class="step" style="display:flex;gap:16px;align-items:flex-start;padding:18px 10px;border-bottom:1px solid #e8e3d8;cursor:pointer;border-radius:10px">
+        <div style="flex:none;width:28px;height:28px;border-radius:8px;border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;background:{{ s.boxBg }};margin-top:1px">
+          <sc-if value="{{ s.checked }}" hint-placeholder-val="{{ false }}"><span style="color:#1c1a17;font-weight:900;font-size:15px">✓</span></sc-if>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:18px;line-height:1.3">{{ s.title }}</div>
+          <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Newsreader',serif;font-size:16px;color:#8a8579;margin-top:4px;line-height:1.45">{{ s.note }}</div></sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- PHASE 3 -->
+  <section style="max-width:860px;margin:0 auto;padding:32px 32px 8px">
+    <div style="display:flex;align-items:baseline;gap:14px;border-top:2px solid #1c1a17;padding-top:22px;margin-bottom:8px">
+      <span style="font-family:'Space Mono',monospace;font-size:34px;font-weight:700;color:oklch(0.78 0.15 75)">03</span>
+      <h2 style="font-weight:900;font-size:34px;letter-spacing:-0.03em;margin:0">Point ltpodcast.com at it</h2>
+    </div>
+    <p style="font-family:'Newsreader',serif;font-size:18px;color:#6b665b;margin:0 0 8px;line-height:1.5">You already own ltpodcast.com on GoDaddy — no need to buy anything. You'll move its DNS to Cloudflare (free), then attach it to your site. This is the fiddliest phase; take it slow.</p>
+    <sc-for list="{{ phase3 }}" as="s" hint-placeholder-count="5">
+      <div onClick="{{ s.toggle }}" class="step" style="display:flex;gap:16px;align-items:flex-start;padding:18px 10px;border-bottom:1px solid #e8e3d8;cursor:pointer;border-radius:10px">
+        <div style="flex:none;width:28px;height:28px;border-radius:8px;border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;background:{{ s.boxBg }};margin-top:1px">
+          <sc-if value="{{ s.checked }}" hint-placeholder-val="{{ false }}"><span style="color:#1c1a17;font-weight:900;font-size:15px">✓</span></sc-if>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:18px;line-height:1.3">{{ s.title }}</div>
+          <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Newsreader',serif;font-size:16px;color:#8a8579;margin-top:4px;line-height:1.45">{{ s.note }}</div></sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- PHASE 4 -->
+  <section style="max-width:860px;margin:0 auto;padding:32px 32px 8px">
+    <div style="display:flex;align-items:baseline;gap:14px;border-top:2px solid #1c1a17;padding-top:22px;margin-bottom:8px">
+      <span style="font-family:'Space Mono',monospace;font-size:34px;font-weight:700;color:oklch(0.55 0.13 250)">04</span>
+      <h2 style="font-weight:900;font-size:34px;letter-spacing:-0.03em;margin:0">Connect the moving parts</h2>
+    </div>
+    <p style="font-family:'Newsreader',serif;font-size:18px;color:#6b665b;margin:0 0 8px;line-height:1.5">The newsletter form, streaming buttons, and community links need real destinations. Do these anytime — the site works without them.</p>
+    <sc-for list="{{ phase4 }}" as="s" hint-placeholder-count="4">
+      <div onClick="{{ s.toggle }}" class="step" style="display:flex;gap:16px;align-items:flex-start;padding:18px 10px;border-bottom:1px solid #e8e3d8;cursor:pointer;border-radius:10px">
+        <div style="flex:none;width:28px;height:28px;border-radius:8px;border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;background:{{ s.boxBg }};margin-top:1px">
+          <sc-if value="{{ s.checked }}" hint-placeholder-val="{{ false }}"><span style="color:#1c1a17;font-weight:900;font-size:15px">✓</span></sc-if>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:18px;line-height:1.3">{{ s.title }}</div>
+          <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Newsreader',serif;font-size:16px;color:#8a8579;margin-top:4px;line-height:1.45">{{ s.note }}</div></sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- PHASE 5 -->
+  <section style="max-width:860px;margin:0 auto;padding:32px 32px 24px">
+    <div style="display:flex;align-items:baseline;gap:14px;border-top:2px solid #1c1a17;padding-top:22px;margin-bottom:8px">
+      <span style="font-family:'Space Mono',monospace;font-size:34px;font-weight:700;color:oklch(0.66 0.16 25)">05</span>
+      <h2 style="font-weight:900;font-size:34px;letter-spacing:-0.03em;margin:0">A normal week, once you're live</h2>
+    </div>
+    <p style="font-family:'Newsreader',serif;font-size:18px;color:#6b665b;margin:0 0 8px;line-height:1.5">Updating the site after launch is the easy part.</p>
+    <sc-for list="{{ phase5 }}" as="s" hint-placeholder-count="3">
+      <div onClick="{{ s.toggle }}" class="step" style="display:flex;gap:16px;align-items:flex-start;padding:18px 10px;border-bottom:1px solid #e8e3d8;cursor:pointer;border-radius:10px">
+        <div style="flex:none;width:28px;height:28px;border-radius:8px;border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;background:{{ s.boxBg }};margin-top:1px">
+          <sc-if value="{{ s.checked }}" hint-placeholder-val="{{ false }}"><span style="color:#1c1a17;font-weight:900;font-size:15px">✓</span></sc-if>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:18px;line-height:1.3">{{ s.title }}</div>
+          <sc-if value="{{ s.hasNote }}" hint-placeholder-val="{{ true }}"><div style="font-family:'Newsreader',serif;font-size:16px;color:#8a8579;margin-top:4px;line-height:1.45">{{ s.note }}</div></sc-if>
+        </div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- NEWSLETTER / SHEET DEEP DIVE -->
+  <section style="background:#1c1a17;color:#faf8f3">
+    <div style="max-width:860px;margin:0 auto;padding:64px 32px">
+      <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.74 0.15 130);margin-bottom:14px">Optional · the form → Google Sheet</div>
+      <h2 style="font-weight:900;font-size:36px;letter-spacing:-0.03em;margin:0 0 16px">How the newsletter capture works</h2>
+      <p style="font-family:'Newsreader',serif;font-size:18px;line-height:1.6;color:#cfcabb;margin:0 0 24px;max-width:640px">Right now every signup is saved in the visitor's browser, and you can export them all to a spreadsheet anytime via the "· owner ·" link at the bottom of the Newsletter page. To collect them in one Google Sheet automatically, do this once:</p>
+      <ol style="font-family:'Newsreader',serif;font-size:18px;line-height:1.7;color:#cfcabb;margin:0 0 24px;padding-left:22px;max-width:640px">
+        <li>Make a Google Sheet with columns: <span style="font-family:'Space Mono',monospace;font-size:15px;color:#faf8f3">ts, name, email, goal, source</span>.</li>
+        <li>In the Sheet: <strong>Extensions → Apps Script</strong>. Paste a short <span style="font-family:'Space Mono',monospace;font-size:15px;color:#faf8f3">doPost</span> script (ask me for the exact text) and <strong>Deploy → Web app → access: Anyone</strong>.</li>
+        <li>Copy the web-app URL it gives you.</li>
+        <li>Paste it into the Newsletter page's <strong>"Google Sheet / CRM endpoint URL"</strong> setting. Done — new signups now land in your Sheet automatically.</li>
+      </ol>
+      <p style="font-family:'Newsreader',serif;font-size:17px;line-height:1.6;color:#8d8778;margin:0;max-width:640px">When the list grows, you'll likely move to a dedicated newsletter tool (Beehiiv, ConvertKit, Mailchimp) that both stores subscribers <em>and</em> sends the email. Ask me and I'll wire the form straight to one of those instead.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#211f1a;color:#7a7568">
+    <div style="max-width:860px;margin:0 auto;padding:40px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <a href="index.html" style="text-decoration:none;color:#faf8f3;font-weight:800;font-size:15px">← Back to the site</a>
+      <span style="font-family:'Space Mono',monospace;font-size:12px">Stuck on a step? Ask and I'll walk you through it.</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { done: {} };
+
+  componentDidMount() {
+    try { this.setState({ done: JSON.parse(localStorage.getItem("ltp_launch") || "{}") }); } catch(e){}
+  }
+
+  toggle(id) {
+    const done = { ...this.state.done, [id]: !this.state.done[id] };
+    try { localStorage.setItem("ltp_launch", JSON.stringify(done)); } catch(e){}
+    this.setState({ done });
+  }
+
+  steps() {
+    return {
+      phase1: [
+        ["gh-account", "Create a free account at github.com", "Use an email you'll keep. The free tier is all you need."],
+        ["gh-repo", "Click \u201cNew repository\u201d \u2192 name it (e.g. ltpodcast-site) \u2192 keep it Public \u2192 Create", "Public is fine and required for free Cloudflare Pages."],
+        ["gh-upload", "\u201cAdd file\u201d \u2192 \u201cUpload files\u201d \u2192 drag in all the site files plus the assets folder \u2192 \u201cCommit changes\u201d", "Keep the same folder layout you were given so images still load."],
+      ],
+      phase2: [
+        ["cf-account", "Create a free account at cloudflare.com", ""],
+        ["cf-pages", "\u201cWorkers & Pages\u201d \u2192 Create \u2192 Pages \u2192 \u201cConnect to Git\u201d \u2192 pick your repo", "Authorize Cloudflare to see your GitHub when it asks."],
+        ["cf-deploy", "Leave the build settings empty (it's a plain site) \u2192 \u201cSave and Deploy\u201d", "~30 seconds later you get a free yourname.pages.dev link \u2014 that's the live site."],
+        ["cf-test", "Open the .pages.dev link and click through every page", "Check the nav, images, and that the newsletter form submits."],
+      ],
+      phase3: [
+        ["cf-addsite", "In Cloudflare, add a site: type ltpodcast.com \u2192 choose the Free plan \u2192 it scans your existing GoDaddy DNS", "It copies over your current records so nothing breaks."],
+        ["cf-ns", "Cloudflare shows you 2 nameservers (like xxx.ns.cloudflare.com) \u2014 copy them", "These tell the internet that Cloudflare now runs your domain."],
+        ["gd-ns", "In GoDaddy: your domain \u2192 \u201cNameservers\u201d \u2192 Change \u2192 \u201cI'll use my own\u201d \u2192 paste the two Cloudflare ones \u2192 Save", "This is the one change you make on GoDaddy's side."],
+        ["cf-custom", "Back in your Pages project: \u201cCustom domains\u201d \u2192 add ltpodcast.com and www.ltpodcast.com", "Cloudflare wires these up automatically once it controls the domain."],
+        ["dns-wait", "Wait for it to switch over (often minutes, up to a few hours) \u2192 visit ltpodcast.com and confirm the padlock", "HTTPS is automatic and free \u2014 no action needed beyond waiting."],
+      ],
+      phase4: [
+        ["link-stream", "Point the Spotify / Apple / YouTube buttons at your real shows", "Send me the links and I'll set them across the site in a couple minutes."],
+        ["link-social", "Set the Patreon and Discord links (currently placeholders)", "Same \u2014 give me the URLs and I'll drop them in everywhere."],
+        ["link-news", "Decide how the newsletter sends: keep the Google Sheet, or connect Beehiiv/ConvertKit/Mailchimp", "The dark section below explains the Sheet route. I can wire either."],
+        ["link-merch", "When ready, connect real merch checkout (Shopify or Printful print-on-demand)", "Until then the Merch page is a great \u201ccoming soon\u201d showcase."],
+      ],
+      phase5: [
+        ["wk-edit", "Want a change? Tell me, or edit the file \u2014 then drag the updated file into GitHub", "No rebuild knowledge needed; you're just replacing a file."],
+        ["wk-auto", "Cloudflare republishes automatically in ~30 seconds", "Refresh ltpodcast.com and your change is live."],
+        ["wk-leads", "Every so often, export your newsletter leads (or check your Sheet) and import them into your email tool", "Skip this once the form is wired straight to a newsletter service."],
+      ],
+    };
+  }
+
+  renderVals() {
+    const groups = this.steps();
+    const done = this.state.done;
+    const out = {};
+    let total = 0, doneN = 0;
+    for (const key in groups) {
+      out[key] = groups[key].map(([id, title, note]) => {
+        const checked = !!done[id];
+        total++; if (checked) doneN++;
+        return {
+          title, note,
+          hasNote: !!note,
+          checked,
+          boxBg: checked ? "oklch(0.74 0.15 130)" : "#ffffff",
+          toggle: () => this.toggle(id),
+        };
+      });
+    }
+    out.pct = (total ? Math.round((doneN/total)*100) : 0) + "%";
+    out.progressLabel = doneN + " / " + total + " done";
+    return out;
+  }
+}
+</script>
+</body>
+</html>
