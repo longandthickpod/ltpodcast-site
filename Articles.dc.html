@@ -72,48 +72,26 @@
   <section style="max-width:1200px;margin:0 auto;padding:64px 32px 8px">
     <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:16px">Reading, not just listening</div>
     <h1 style="font-weight:900;font-size:120px;line-height:0.82;letter-spacing:-0.045em;text-transform:uppercase;margin:0 0 24px">Articles</h1>
-    <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 8px">Long-form breakdowns of the stuff we geek out about — sourced, a little sarcastic, and always free to read.</p>
+    <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 8px">Long-form breakdowns of the stuff we geek out about — sourced, a little sarcastic, and always free to read on our Substack.</p>
   </section>
 
-  <!-- CATEGORY FILTER (visual) -->
-  <section style="max-width:1200px;margin:0 auto;padding:24px 32px 8px">
-    <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <span style="background:#1c1a17;color:#faf8f3;border-radius:100px;padding:9px 18px;font-weight:700;font-size:13px;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">All</span>
-      <span style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:9px 18px;font-weight:600;font-size:13px;color:#46433c;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">Nutrition</span>
-      <span style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:9px 18px;font-weight:600;font-size:13px;color:#46433c;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">Recovery</span>
-      <span style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:9px 18px;font-weight:600;font-size:13px;color:#46433c;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">Training</span>
-      <span style="background:#fff;border:1.5px solid #ddd6c8;border-radius:100px;padding:9px 18px;font-weight:600;font-size:13px;color:#46433c;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:0.04em">Mindset</span>
-    </div>
-  </section>
-
-  <!-- FEATURED ARTICLE -->
-  <section style="max-width:1200px;margin:0 auto;padding:32px 32px 8px">
-    <a href="#" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:2px solid #1c1a17;border-radius:20px;overflow:hidden;background:#fff">
-      <div style="aspect-ratio:16/11;background-image:repeating-linear-gradient(45deg,#ece7da 0 12px,#f4efe5 12px 24px);display:flex;align-items:center;justify-content:center"><span style="font-family:'Space Mono',monospace;font-size:12px;color:#a59f8f">featured image 16:11</span></div>
-      <div style="padding:48px;display:flex;flex-direction:column;justify-content:center">
-        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:oklch(0.62 0.16 50);margin-bottom:14px">Featured · Nutrition · 9 min read</div>
-        <h2 style="font-weight:900;font-size:40px;line-height:1.02;letter-spacing:-0.03em;margin:0 0 16px">The microplastics panic, ranked by how much you should actually care</h2>
-        <p style="font-family:'Newsreader',serif;font-size:19px;line-height:1.5;color:#46433c;margin:0 0 24px">Everyone's terrified of the water bottle. We sort the genuine concerns from the doom-scrolling — and tell you the three changes that are actually worth your effort.</p>
-        <span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#1c1a17">Read the article →</span>
-      </div>
-    </a>
-  </section>
-
-  <!-- ARTICLE GRID -->
-  <section style="max-width:1200px;margin:0 auto;padding:48px 32px 24px">
-    <div style="border-top:2px solid #1c1a17;padding-top:20px;margin-bottom:28px">
-      <h2 style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin:0">More reading</h2>
+  <!-- ARTICLES ROW -->
+  <section style="max-width:1200px;margin:0 auto;padding:36px 32px 24px">
+    <div style="border-top:2px solid #1c1a17;padding-top:20px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:baseline">
+      <h2 style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin:0">Latest posts</h2>
+      <a href="https://longandthickpodcast.substack.com/" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:oklch(0.62 0.16 50);text-decoration:none">All posts on Substack →</a>
     </div>
     <div data-carousel id="art-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px">
-      <sc-for list="{{ articles }}" as="a" hint-placeholder-count="6">
-        <a href="#" style="text-decoration:none;color:inherit;display:block;border-bottom:2px solid #1c1a17;padding-bottom:20px">
+      <sc-for list="{{ articles }}" as="a" hint-placeholder-count="3">
+        <a href="{{ a.url }}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;border-bottom:2px solid #1c1a17;padding-bottom:22px">
           <div style="aspect-ratio:4/3;border-radius:14px;background-image:repeating-linear-gradient(45deg,#ece7da 0 11px,#f4efe5 11px 22px);display:flex;align-items:center;justify-content:center;margin-bottom:16px"><span style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f">image 4:3</span></div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
             <span style="width:8px;height:8px;border-radius:50%;background:{{ a.dot }}"></span>
             <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#a59f8f">{{ a.meta }}</span>
           </div>
-          <h4 style="font-weight:800;font-size:22px;line-height:1.08;letter-spacing:-0.02em;margin:0 0 8px">{{ a.t }}</h4>
-          <p style="font-family:'Newsreader',serif;font-size:16px;color:#6b665b;margin:0;line-height:1.45">{{ a.d }}</p>
+          <h4 style="font-weight:800;font-size:24px;line-height:1.08;letter-spacing:-0.02em;margin:0 0 10px">{{ a.t }}</h4>
+          <p style="font-family:'Newsreader',serif;font-size:16px;color:#6b665b;margin:0 0 14px;line-height:1.45">{{ a.d }}</p>
+          <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:#1c1a17">Read on Substack →</span>
         </a>
       </sc-for>
     </div>
@@ -127,7 +105,7 @@
         <h2 style="font-weight:900;font-size:40px;line-height:1.0;letter-spacing:-0.03em;margin:0 0 12px">Read the best of it weekly.</h2>
         <p style="font-family:'Newsreader',serif;font-size:18px;line-height:1.5;color:#bdb8aa;margin:0;max-width:480px">One short, no-fluff email a week — the article worth your time and the noise worth ignoring.</p>
       </div>
-      <a href="Newsletter Funnel.dc.html" style="justify-self:start;text-decoration:none;background:oklch(0.74 0.15 130);color:#1c1a17;border-radius:100px;padding:16px 30px;font-weight:700;font-size:16px">Join the newsletter →</a>
+      <a href="https://substack.com/@thelongthickpodcast" target="_blank" rel="noopener" style="justify-self:start;text-decoration:none;background:oklch(0.74 0.15 130);color:#1c1a17;border-radius:100px;padding:16px 30px;font-weight:700;font-size:16px">Read &amp; subscribe on Substack →</a>
     </div>
   </section>
 
@@ -166,21 +144,19 @@
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   renderVals() {
-    const dot = {Nutrition:"oklch(0.62 0.16 50)",Recovery:"oklch(0.74 0.15 130)",Training:"oklch(0.55 0.13 250)",Mindset:"oklch(0.78 0.15 75)"};
+    const dot = {Nutrition:"oklch(0.62 0.16 50)",Recovery:"oklch(0.74 0.15 130)",Training:"oklch(0.55 0.13 250)",Mindset:"oklch(0.78 0.15 75)","The Show":"oklch(0.66 0.16 25)"};
     const arts = [
-      {cat:"Recovery", read:"6 min", t:"Sauna, cold plunge, sleep: which recovery tools earn their hype", d:"We line up the most-hyped recovery rituals against the evidence and rank what's worth it."},
-      {cat:"Mindset", read:"5 min", t:"You don't suck at time management — you just have no system", d:"Why discipline keeps failing you, and the dead-simple structure that beats willpower."},
-      {cat:"Training", read:"8 min", t:"The minimum effective dose of strength training", d:"How little you can actually get away with and still get stronger. Spoiler: less than you think."},
-      {cat:"Nutrition", read:"7 min", t:"Protein targets, demystified for normal people", d:"How much you really need, where the numbers come from, and how to hit them without obsessing."},
-      {cat:"Recovery", read:"6 min", t:"Why your sleep tracker might be making sleep worse", d:"The anxiety loop of chasing a perfect sleep score, and what to watch instead."},
-      {cat:"Training", read:"9 min", t:"Mobility isn't stretching — here's what actually works", d:"The difference between flexibility and usable range, and the drills that build the good kind."},
+      {cat:"The Show", url:"https://longandthickpodcast.substack.com/", t:"Welcome to the Newsletter: A Throwback to Episode One", d:"Where it all started — a look back at episode one, how the show began, and where we're headed next."},
+      {cat:"Training", url:"https://longandthickpodcast.substack.com/p/on-having-a-plan-and-knowing-when", t:"On Having a Plan (And Knowing When to Leave the Gym)", d:"Why training without a plan spins your wheels — and how to tell when the smartest rep is the one you skip."},
+      {cat:"Nutrition", url:"https://longandthickpodcast.substack.com/p/the-basics-of-not-sabotaging-yourself", t:"The Basics of Not Sabotaging Yourself With Food", d:"Nutrition has a rare gift for turning sane, employed adults into unhinged zealots. Here's the boring version that actually works."},
     ];
     return {
       articles: arts.map(a => ({
         dot: dot[a.cat] || "#999",
-        meta: a.cat + " · " + a.read + " read",
+        meta: a.cat,
         t: a.t,
         d: a.d,
+        url: a.url,
       })),
     };
   }

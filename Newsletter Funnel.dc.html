@@ -72,13 +72,19 @@
     </div>
 
     <!-- FORM CARD -->
-    <div style="background:#faf8f3;color:#1c1a17;border-radius:24px;border:2px solid #000;box-shadow:12px 12px 0 oklch(0.74 0.15 130);padding:36px">
+    <div style="background:#faf8f3;color:#1c1a17;border-radius:24px;border:2px solid #000;box-shadow:12px 12px 0 oklch(0.74 0.15 130);padding:28px">
+      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:6px;text-align:center">Join the list — free</div>
+      <h2 style="font-weight:900;font-size:26px;letter-spacing:-0.02em;margin:0 0 16px;text-align:center">Get the next drop</h2>
+      <iframe src="https://longandthickpodcast.substack.com/embed" title="Subscribe to The Long & Thick Podcast on Substack" width="100%" height="150" style="border:none;border-radius:12px;background:#faf8f3;display:block" frameborder="0" scrolling="no"></iframe>
+      <p style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f;text-align:center;margin:12px 0 0;line-height:1.5">Powered by Substack. No spam, unsubscribe anytime.<br>We'll never sell your email — we don't sell anything.</p>
+    </div>
+    <div style="display:none">
       <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
         <div style="text-align:center;padding:24px 8px">
           <div style="width:64px;height:64px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:30px;font-weight:900">✓</div>
-          <h2 style="font-weight:900;font-size:30px;letter-spacing:-0.02em;margin:0 0 10px">You're in.</h2>
-          <p style="font-family:'Newsreader',serif;font-size:18px;color:#46433c;line-height:1.5;margin:0 0 20px">Check your inbox for a quick hello. Next drop lands this week — keep an eye out.</p>
-          <a href="Episodes.dc.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:13px 24px;font-weight:700;font-size:15px">Browse episodes while you wait →</a>
+          <h2 style="font-weight:900;font-size:30px;letter-spacing:-0.02em;margin:0 0 10px">Almost there — one tap.</h2>
+          <p style="font-family:'Newsreader',serif;font-size:18px;color:#46433c;line-height:1.5;margin:0 0 20px">We opened Substack in a new tab to finish your sign-up. Didn't see it? Tap below — it takes 10 seconds.</p>
+          <a href="{{ substackUrl }}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:13px 24px;font-weight:700;font-size:15px">Finish on Substack →</a>
         </div>
       </sc-if>
       <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
@@ -107,7 +113,8 @@
           </sc-if>
 
           <button onClick="{{ onSubmit }}" style="width:100%;border:none;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:17px;font-weight:800;font-size:17px;font-family:'Archivo',sans-serif;cursor:pointer;margin-top:16px">{{ buttonLabel }}</button>
-          <p style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f;text-align:center;margin:14px 0 0;line-height:1.5">No spam. Unsubscribe anytime.<br>We'll never sell your email — we don't sell anything.</p>
+          <a href="{{ substackUrl }}" target="_blank" rel="noopener" style="display:block;text-align:center;font-weight:700;font-size:14px;color:#1c1a17;text-decoration:none;margin-top:12px">Or subscribe straight on Substack →</a>
+          <p style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f;text-align:center;margin:14px 0 0;line-height:1.5">Powered by Substack. No spam, unsubscribe anytime.<br>We'll never sell your email — we don't sell anything.</p>
         </div>
       </sc-if>
     </div>
@@ -197,7 +204,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:900},&quot;sheetEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;CRM&quot;,&quot;label&quot;:&quot;Google Sheet / CRM endpoint URL&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:900},&quot;substackUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://substack.com/@thelongthickpodcast&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Newsletter&quot;,&quot;label&quot;:&quot;Substack URL (where signups subscribe)&quot;},&quot;sheetEndpoint&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;CRM&quot;,&quot;label&quot;:&quot;Optional backup: Google Sheet / CRM endpoint URL&quot;}}">
 class Component extends DCLogic {
   state = { name:"", email:"", goal:"", error:"", submitted:false, showOwner:false, captures:[] };
 
@@ -230,6 +237,10 @@ class Component extends DCLogic {
         }).catch(()=>{});
       } catch(e){}
     }
+
+    // 3) send them to Substack to complete the subscription (Substack is the real list)
+    const substack = this.props.substackUrl || "https://substack.com/@thelongthickpodcast";
+    try { window.open(substack, "_blank", "noopener"); } catch(e){}
 
     this.setState({ submitted:true, captures:all, error:"", name:"", email:"", goal:"" });
   };
@@ -274,6 +285,7 @@ class Component extends DCLogic {
       name, email, goal, error,
       submitted, notSubmitted: !submitted,
       showOwner,
+      substackUrl: this.props.substackUrl || "https://substack.com/@thelongthickpodcast",
       buttonLabel: "Sign me up — free",
       captureCount: captures.length + (captures.length === 1 ? " lead" : " leads"),
       endpointNote: this.props.sheetEndpoint ? " · syncing to your sheet" : " · no sheet connected yet",
