@@ -100,9 +100,9 @@
 
   <!-- FEATURED -->
   <section style="max-width:1200px;margin:0 auto;padding:48px 32px 8px">
-    <a href="https://youtu.be/iRGQISl1QVU" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:2px solid #1c1a17;border-radius:20px;overflow:hidden;background:#fff">
+    <a href="https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:2px solid #1c1a17;border-radius:20px;overflow:hidden;background:#fff">
       <div style="aspect-ratio:16/10;position:relative;overflow:hidden;background:#1c1a17">
-        <img src="assets/ep-origin-stories.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/iRGQISl1QVU/hqdefault.jpg'" alt="The Origin Stories of Long & Thick" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+        <img src="assets/ep-origin-stories.jpg" alt="The Origin Stories of Long & Thick" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
         <div style="position:absolute;left:24px;bottom:24px;width:64px;height:64px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;z-index:2">
           <span style="width:0;height:0;border-left:16px solid #1c1a17;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px"></span>
         </div>
@@ -125,9 +125,9 @@
       <h2 style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin:0">More episodes</h2>
       <a href="https://www.youtube.com/@TheLongThickPodcast/videos" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:oklch(0.62 0.16 50);text-decoration:none">All episodes on YouTube →</a>
     </div>
-    <sc-for list="{{ episodes }}" as="ep" hint-placeholder-count="3">
+    <sc-for list="{{ episodes }}" as="ep">
       <a data-ep-row href="{{ ep.url }}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:180px 1fr auto;gap:24px;align-items:center;padding:20px 8px;border-bottom:1px solid #e8e3d8">
-        <div style="aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#1c1a17"><img src="{{ ep.thumb }}" onerror="{{ ep.onImgError }}" alt="{{ ep.t }}" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
+        <div style="aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#1c1a17"><sc-if value="{{ ep.thumb }}" hint-placeholder-val="{{ false }}"><img src="{{ ep.thumb }}" alt="{{ ep.t }}" style="width:100%;height:100%;object-fit:cover;display:block"/></sc-if></div>
         <div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
             <span style="width:8px;height:8px;border-radius:50%;background:{{ ep.dot }}"></span>
@@ -172,7 +172,7 @@
           </div>
           <div style="display:flex;flex-direction:column;gap:11px">
             <span style="font-family:'Space Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#7a7568">Community</span>
-            <a href="https://patreon.com/TheLongandThickPodcast" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Patreon</a><a href="https://discord.gg/tKqSw37MR" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Discord</a><a href="https://www.threads.com/@longandthickpodcast" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Threads</a><a href="https://www.instagram.com/longandthickpodcast" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Instagram</a><a href="https://www.tiktok.com/@thelongandthickpodcast" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">TikTok</a>
+            <a href="https://patreon.com/TheLongandThickPodcast" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Patreon</a><a href="https://www.threads.com/@longandthickpodcast" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Threads</a><a href="https://www.instagram.com/longandthickpodcast" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">Instagram</a><a href="https://www.tiktok.com/@thelongandthickpodcast" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">TikTok</a>
           </div>
         </div>
       </div>
@@ -187,25 +187,64 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  state = { live: null };
+
+  componentDidMount() {
+    // Pull the latest episodes from the Spotify feed via our Cloudflare
+    // Function. Works on the live site; in preview it quietly falls back
+    // to the built-in list below.
+    fetch("/api/episodes")
+      .then(r => r.json())
+      .then(d => {
+        if (d && Array.isArray(d.items) && d.items.length > 1) {
+          // skip index 0 — that's the hero episode shown above
+          const live = d.items.slice(1, 7).map((it, i) => ({
+            url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
+            thumb: it.image || "",
+            dot: this.dots[i % this.dots.length],
+            meta: this.fmtDur(it.duration),
+            t: it.title || "",
+            d: "",
+          }));
+          if (live.length) this.setState({ live });
+        }
+      })
+      .catch(() => {});
+  }
+
+  dots = ["oklch(0.62 0.16 50)","oklch(0.55 0.13 250)","oklch(0.66 0.16 25)","oklch(0.78 0.15 75)","oklch(0.74 0.15 130)","oklch(0.5 0.12 300)"];
+
+  fmtDur(s) {
+    if (!s) return "Watch on Spotify";
+    const p = s.split(":").map(Number);
+    let mins = 0;
+    if (p.length === 3) mins = p[0] * 60 + p[1];
+    else if (p.length === 2) mins = p[0];
+    else return "Watch on Spotify";
+    if (mins >= 60) return Math.floor(mins / 60) + " hr " + String(mins % 60).padStart(2, "0") + " min";
+    return mins + " min";
+  }
+
   renderVals() {
-    const dot = {Nutrition:"oklch(0.62 0.16 50)",Recovery:"oklch(0.74 0.15 130)",Mindset:"oklch(0.78 0.15 75)",Training:"oklch(0.55 0.13 250)",Sleep:"oklch(0.5 0.12 300)",Guest:"oklch(0.66 0.16 25)",Entertainment:"oklch(0.66 0.16 25)"};
-    const eps = [
-      {id:"MG4HwayuNvw", cat:"Nutrition", img:"assets/ep-keeping-on-track.jpg", t:"Keeping On Track While Traveling", d:"We could've called it \"biohack your travel for maximum gains and macro adherence.\" We chose not to. You're welcome."},
-      {id:"zMCy8COCuQE", cat:"Entertainment", t:"We Played The Best Version of Would You Rather!", d:"Health's on the afterburner — Daniel and Ronnie sit down for pure entertainment via the classic game, with a twist. This version's different."},
-      {id:"vghh1z2u6r0", cat:"Mindset", t:"Are We Losing the Ability to Learn?", d:"In a world built on instant access and instant convenience, are we actually getting smarter — or just better at looking things up?"},
-      {id:"ju87qc0RXIo", cat:"Mindset", img:"assets/ep-mentorship.jpg", t:"The Lost Art of Mentorship", d:"Daniel and Ronnie break down five key factors in mentorship — an important, and increasingly lost, art in western society today."},
-    ];
-    return {
-      episodes: eps.map(e => ({
-        url: "https://youtu.be/" + e.id,
-        thumb: e.img || ("https://i.ytimg.com/vi/" + e.id + "/hqdefault.jpg"),
-        onImgError: "this.onerror=null;this.src='https://i.ytimg.com/vi/" + e.id + "/hqdefault.jpg'",
-        dot: dot[e.cat] || '#999',
-        meta: e.cat,
-        t: e.t,
-        d: e.d,
-      })),
-    };
+    const dot = {Nutrition:"oklch(0.62 0.16 50)",Training:"oklch(0.55 0.13 250)",Entertainment:"oklch(0.66 0.16 25)",Mindset:"oklch(0.78 0.15 75)",Life:"oklch(0.74 0.15 130)"};
+    const base = "https://podcasters.spotify.com/pod/show/the-long--thick-podcast/episodes/";
+    const img = "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/46301763/";
+    const fallback = [
+      {cat:"Training", slug:"You-Dont-Need-a-Travel-Protocol---You-Need-This-e3lmhoj", hash:"02a96ffcfd32534c", meta:"47 min", t:"You Don't Need a \"Travel Protocol\" — You Need This", d:"How to travel without completely disregarding your program and goals — no biohacking required."},
+      {cat:"Training", slug:"5-Tips-to-Defeating-Your-Training-Plateaus---Episode-Six-Seven-e3lmhpp", hash:"9f2aebff61d4cc4c", meta:"1 hr 00 min", t:"5 Tips to Defeating Your Training Plateaus", d:"Five ways to break a stall — because you can't manage what you don't measure."},
+      {cat:"Entertainment", slug:"We-Played-The-Best-Version-of-Would-You-Rather-e3lmhnm", hash:"c8bcb82dc834ed2f", meta:"45 min", t:"We Played The Best Version of Would You Rather!", d:"Health's on the afterburner — pure entertainment via a classic game, our way."},
+      {cat:"Mindset", slug:"Are-We-Losing-The-Ability-to-Learn-e3lmhpi", hash:"ff713c54c860e22b", meta:"40 min", t:"Are We Losing the Ability to Learn?", d:"In a world of instant access, are we getting smarter — or just better at looking things up?"},
+      {cat:"Life", slug:"Coffee--Tattoos--Photo-Albums-and-What-e3lmhnd", hash:"db97c0a7d96755b4", meta:"27 min", t:"Coffee, Tattoos, Photo Albums and What?", d:"Life updates, good laughs, and everything the title promises."},
+      {cat:"Mindset", slug:"The-Lost-Art-of-Mentorship-e3lmhp2", hash:"fd5b122a5458fae4", meta:"40 min", t:"The Lost Art of Mentorship", d:"Daniel and Ronnie break down five key factors in mentorship — a lost art today."},
+    ].map(e => ({
+      url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
+      thumb: img + e.hash + ".png",
+      dot: dot[e.cat] || "#999",
+      meta: e.meta,
+      t: e.t,
+      d: e.d,
+    }));
+    return { episodes: this.state.live || fallback };
   }
 }
 </script>
