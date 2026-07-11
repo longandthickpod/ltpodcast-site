@@ -102,18 +102,18 @@
   <section style="max-width:1200px;margin:0 auto;padding:48px 32px 8px">
     <a href="https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:2px solid #1c1a17;border-radius:20px;overflow:hidden;background:#fff">
       <div style="aspect-ratio:16/10;position:relative;overflow:hidden;background:#1c1a17">
-        <img src="assets/ep-origin-stories.jpg" alt="The Origin Stories of Long & Thick" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+        <img src="assets/ep-gym5-adam-wright.jpg" alt="20 Years of GYM5: The Story of Adam Wright and The Life of Gym Ownership" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
         <div style="position:absolute;left:24px;bottom:24px;width:64px;height:64px;border-radius:50%;background:oklch(0.74 0.15 130);border:2px solid #1c1a17;display:flex;align-items:center;justify-content:center;z-index:2">
           <span style="width:0;height:0;border-left:16px solid #1c1a17;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px"></span>
         </div>
         <div style="position:absolute;top:20px;left:20px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;background:oklch(0.84 0.16 90);color:#1c1a17;padding:7px 13px;border-radius:100px;z-index:2">Latest</div>
       </div>
       <div style="padding:44px;display:flex;flex-direction:column;justify-content:center">
-        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#a59f8f;margin-bottom:14px">Latest · New to the pod? Start here</div>
-        <h3 style="font-weight:900;font-size:38px;line-height:1.02;letter-spacing:-0.025em;margin:0 0 16px">The Origin Stories of Long &amp; Thick</h3>
-        <p style="font-family:'Newsreader',serif;font-size:19px;line-height:1.5;color:#46433c;margin:0 0 26px">Daniel and Ronnie flip the script and answer the same questions they grill guests with — sports history, how fitness actually entered their lives, and the messy, non-linear road to the show. No polished influencer origin story, just what actually happened.</p>
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#a59f8f;margin-bottom:12px">Latest · First-ever in-person interview</div>
+        <h3 style="font-weight:900;font-size:30px;line-height:1.08;letter-spacing:-0.02em;margin:0 0 12px">20 Years of GYM5: Adam Wright on a Life of Gym Ownership</h3>
+        <p style="font-family:'Newsreader',serif;font-size:17px;line-height:1.5;color:#46433c;margin:0 0 20px">Adam Wright built, rebuilt, and still runs Nashville's legendary GYM5 — now in its 20th year. This in-person conversation gets into his story, and how the gym is a direct reflection of the man.</p>
         <div style="display:flex;gap:12px;align-items:center">
-          <span style="display:flex;align-items:center;gap:9px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:12px 22px;font-weight:700;font-size:15px"><span style="width:0;height:0;border-left:10px solid oklch(0.74 0.15 130);border-top:6px solid transparent;border-bottom:6px solid transparent"></span>Play on YouTube</span>
+          <span style="display:flex;align-items:center;gap:9px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:12px 22px;font-weight:700;font-size:15px"><span style="width:0;height:0;border-left:10px solid oklch(0.74 0.15 130);border-top:6px solid transparent;border-bottom:6px solid transparent"></span>Play on Spotify</span>
         </div>
       </div>
     </a>
@@ -230,6 +230,7 @@ class Component extends DCLogic {
     const base = "https://podcasters.spotify.com/pod/show/the-long--thick-podcast/episodes/";
     const img = "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/46301763/";
     const fallback = [
+      {cat:"Life", slug:"The-Origin-Stories-of-Long--Thick-e3lmhov", hash:"22e63e74c98bcf61", meta:"52 min", t:"The Origin Stories of Long & Thick", d:"Daniel and Ronnie flip the script and answer the same questions they grill guests with — sports history, how fitness actually entered their lives, and the messy, non-linear road to the show."},
       {cat:"Training", slug:"You-Dont-Need-a-Travel-Protocol---You-Need-This-e3lmhoj", hash:"02a96ffcfd32534c", meta:"47 min", t:"You Don't Need a \"Travel Protocol\" — You Need This", d:"How to travel without completely disregarding your program and goals — no biohacking required."},
       {cat:"Training", slug:"5-Tips-to-Defeating-Your-Training-Plateaus---Episode-Six-Seven-e3lmhpp", hash:"9f2aebff61d4cc4c", meta:"1 hr 00 min", t:"5 Tips to Defeating Your Training Plateaus", d:"Five ways to break a stall — because you can't manage what you don't measure."},
       {cat:"Entertainment", slug:"We-Played-The-Best-Version-of-Would-You-Rather-e3lmhnm", hash:"c8bcb82dc834ed2f", meta:"45 min", t:"We Played The Best Version of Would You Rather!", d:"Health's on the afterburner — pure entertainment via a classic game, our way."},
@@ -237,8 +238,8 @@ class Component extends DCLogic {
       {cat:"Life", slug:"Coffee--Tattoos--Photo-Albums-and-What-e3lmhnd", hash:"db97c0a7d96755b4", meta:"27 min", t:"Coffee, Tattoos, Photo Albums and What?", d:"Life updates, good laughs, and everything the title promises."},
       {cat:"Mindset", slug:"The-Lost-Art-of-Mentorship-e3lmhp2", hash:"fd5b122a5458fae4", meta:"40 min", t:"The Lost Art of Mentorship", d:"Daniel and Ronnie break down five key factors in mentorship — a lost art today."},
     ].map(e => ({
-      url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
-      thumb: img + e.hash + ".png",
+      url: e.slug ? "https://podcasters.spotify.com/pod/show/the-long--thick-podcast/episodes/" + e.slug : "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
+      thumb: e.thumb || (img + e.hash + ".png"),
       dot: dot[e.cat] || "#999",
       meta: e.meta,
       t: e.t,
