@@ -199,7 +199,10 @@
     <div data-carousel style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
       <sc-for list="{{ episodes }}" as="ep">
         <a href="{{ ep.url }}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;border:1.5px solid #e8e3d8;border-radius:16px;overflow:hidden;background:#fff;display:block">
-          <div style="aspect-ratio:16/9;position:relative;background:#1c1a17"><sc-if value="{{ ep.thumb }}" hint-placeholder-val="{{ false }}"><img src="{{ ep.thumb }}" alt="{{ ep.t }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/></sc-if></div>
+          <div style="aspect-ratio:16/9;position:relative;background:#1c1a17">
+            <sc-if value="{{ ep.hasThumb }}" hint-placeholder-val="{{ false }}"><img src="{{ ep.thumb }}" alt="{{ ep.t }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/></sc-if>
+            <sc-if value="{{ ep.noThumb }}" hint-placeholder-val="{{ true }}"><div style="position:absolute;inset:0"></div></sc-if>
+          </div>
           <div style="padding:22px">
             <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:#a59f8f;margin-bottom:9px">{{ ep.meta }}</div>
             <h4 style="font-weight:800;font-size:21px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 8px">{{ ep.t }}</h4>
@@ -287,21 +290,16 @@
       </div>
     </div>
     <div data-carousel style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
-      <a href="https://longandthickpodcast.substack.com/p/welcome-to-the-newsletter-a-throwback" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;border-bottom:2px solid #1c1a17;padding-bottom:20px">
-        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;margin-bottom:16px;background:#ece7da"><img src="https://substackcdn.com/image/fetch/$s_!KCeQ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8b8cd939-77c2-4c31-88fe-1875c124f438_4800x3200.jpeg" alt="Welcome to the Newsletter" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.66 0.16 25);margin-bottom:8px">The Show</div>
-        <h4 style="font-weight:800;font-size:22px;line-height:1.08;letter-spacing:-0.02em;margin:0">Welcome to the Newsletter: A Throwback to Episode One</h4>
-      </a>
-      <a href="https://longandthickpodcast.substack.com/p/on-having-a-plan-and-knowing-when" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;border-bottom:2px solid #1c1a17;padding-bottom:20px">
-        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;margin-bottom:16px;background:#ece7da"><img src="https://substackcdn.com/image/fetch/$s_!m26A!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08d53b60-11ad-45d8-97f9-1909dc8769bb_4800x3200.jpeg" alt="On Having a Plan" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.55 0.13 250);margin-bottom:8px">Training</div>
-        <h4 style="font-weight:800;font-size:22px;line-height:1.08;letter-spacing:-0.02em;margin:0">On Having a Plan (And Knowing When to Leave the Gym)</h4>
-      </a>
-      <a href="https://longandthickpodcast.substack.com/p/the-basics-of-not-sabotaging-yourself" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;border-bottom:2px solid #1c1a17;padding-bottom:20px">
-        <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;margin-bottom:16px;background:#ece7da"><img src="assets/article-food.jpg" alt="The Basics of Not Sabotaging Yourself With Food" style="width:100%;height:100%;object-fit:cover;display:block"/></div>
-        <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.62 0.16 50);margin-bottom:8px">Nutrition</div>
-        <h4 style="font-weight:800;font-size:22px;line-height:1.08;letter-spacing:-0.02em;margin:0">The Basics of Not Sabotaging Yourself With Food</h4>
-      </a>
+      <sc-for list="{{ articles }}" as="a">
+        <a href="{{ a.url }}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;border-bottom:2px solid #1c1a17;padding-bottom:20px">
+          <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;margin-bottom:16px;background:#ece7da">
+            <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ a.img }}" alt="{{ a.t }}" style="width:100%;height:100%;object-fit:cover;display:block"/></sc-if>
+            <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}"><div style="width:100%;height:100%"></div></sc-if>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:oklch(0.66 0.16 25);margin-bottom:8px">{{ a.meta }}</div>
+          <h4 style="font-weight:800;font-size:22px;line-height:1.08;letter-spacing:-0.02em;margin:0">{{ a.t }}</h4>
+        </a>
+      </sc-for>
     </div>
     <div style="margin-top:28px;border-top:1px solid #e8e3d8;padding-top:20px">
       <a href="https://longandthickpodcast.substack.com/" target="_blank" rel="noopener" style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#1c1a17;text-decoration:none;letter-spacing:0.02em">All posts on Substack →</a>
@@ -390,13 +388,15 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { live: null };
+  state = { live: null, liveArticles: null };
   componentDidMount() {
     fetch("/api/episodes").then(r => r.json()).then(d => {
       if (d && Array.isArray(d.items) && d.items.length > 1) {
         const live = d.items.slice(0, 3).map(it => ({
           url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
           thumb: it.image || "",
+          hasThumb: !!it.image,
+          noThumb: !it.image,
           meta: "Watch on Spotify",
           t: it.title || "",
           d: "",
@@ -404,8 +404,26 @@ class Component extends DCLogic {
         if (live.length) this.setState({ live });
       }
     }).catch(() => {});
+    fetch("/api/articles").then(r => r.json()).then(d => {
+      if (d && Array.isArray(d.items) && d.items.length) {
+        const liveArticles = d.items.slice(0, 3).map(it => ({
+          url: it.link || "https://longandthickpodcast.substack.com/",
+          img: it.image || "",
+          hasImg: !!it.image,
+          noImg: !it.image,
+          meta: "Substack",
+          t: it.title || "",
+        }));
+        if (liveArticles.length) this.setState({ liveArticles });
+      }
+    }).catch(() => {});
   }
   renderVals() {
+    const fallbackArticles = [
+      {url:"https://longandthickpodcast.substack.com/p/welcome-to-the-newsletter-a-throwback", img:"https://substackcdn.com/image/fetch/$s_!KCeQ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8b8cd939-77c2-4c31-88fe-1875c124f438_4800x3200.jpeg", meta:"The Show", t:"Welcome to the Newsletter: A Throwback to Episode One"},
+      {url:"https://longandthickpodcast.substack.com/p/on-having-a-plan-and-knowing-when", img:"https://substackcdn.com/image/fetch/$s_!m26A!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08d53b60-11ad-45d8-97f9-1909dc8769bb_4800x3200.jpeg", meta:"Training", t:"On Having a Plan (And Knowing When to Leave the Gym)"},
+      {url:"https://longandthickpodcast.substack.com/p/the-basics-of-not-sabotaging-yourself", img:"assets/article-food.jpg", meta:"Nutrition", t:"The Basics of Not Sabotaging Yourself With Food"},
+    ].map(a => ({ ...a, hasImg: true, noImg: false }));
     const base = "https://podcasters.spotify.com/pod/show/the-long--thick-podcast/episodes/";
     const img = "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/46301763/";
     const fallback = [
@@ -413,8 +431,8 @@ class Component extends DCLogic {
       {slug:"You-Dont-Need-a-Travel-Protocol---You-Need-This-e3lmhoj", hash:"02a96ffcfd32534c", t:"You Don't Need a \"Travel Protocol\" — You Need This", d:"How to travel without disregarding your program and goals — no biohacking required."},
       {slug:"5-Tips-to-Defeating-Your-Training-Plateaus---Episode-Six-Seven-e3lmhpp", hash:"9f2aebff61d4cc4c", t:"5 Tips to Defeating Your Training Plateaus", d:"Five ways to break a stall — because you can't manage what you don't measure."},
       {slug:"We-Played-The-Best-Version-of-Would-You-Rather-e3lmhnm", hash:"c8bcb82dc834ed2f", t:"We Played The Best Version of Would You Rather!", d:"Health's on the afterburner — pure entertainment via a classic game, our way."},
-    ].map(e => ({ url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq", thumb: img + e.hash + ".png", meta: "Watch on Spotify", t: e.t, d: e.d }));
-    return { episodes: this.state.live || fallback };
+    ].map(e => ({ url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq", thumb: img + e.hash + ".png", hasThumb: true, noThumb: false, meta: "Watch on Spotify", t: e.t, d: e.d }));
+    return { episodes: this.state.live || fallback, articles: this.state.liveArticles || fallbackArticles };
   }
 }
 </script>
