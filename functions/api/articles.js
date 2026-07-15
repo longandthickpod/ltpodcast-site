@@ -25,12 +25,21 @@ export async function onRequest(context) {
         return m[1].replace(/^<!\[CDATA\[/, "").replace(/\]\]>$/, "").trim();
       };
       const stripTags = (s) => s.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+      const decodeEntities = (s) => s
+        .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(parseInt(n, 10)))
+        .replace(/&#x([0-9a-fA-F]+);/g, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .replace(/&nbsp;/g, " ");
       const rawDesc = pick(/<description>([\s\S]*?)<\/description>/);
       items.push({
-        title: pick(/<title>([\s\S]*?)<\/title>/),
+        title: decodeEntities(pick(/<title>([\s\S]*?)<\/title>/)),
         link: pick(/<link>([\s\S]*?)<\/link>/),
         image: pick(/<enclosure[^>]*url="([^"]+)"/) || pick(/<img[^>]*src="([^"]+)"/),
-        description: stripTags(rawDesc).slice(0, 220),
+        description: decodeEntities(stripTags(rawDesc)).slice(0, 220),
         pubDate: pick(/<pubDate>([\s\S]*?)<\/pubDate>/),
       });
     }
