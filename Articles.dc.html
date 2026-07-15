@@ -100,8 +100,8 @@
       <sc-for list="{{ articles }}" as="a" hint-placeholder-count="3">
         <a href="{{ a.url }}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:block;border-bottom:2px solid #1c1a17;padding-bottom:22px">
           <div style="aspect-ratio:4/3;border-radius:14px;overflow:hidden;margin-bottom:16px;background:oklch(0.74 0.15 130);display:flex;align-items:center;justify-content:center">
-            <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ true }}"><img src="{{ a.img }}" alt="{{ a.t }}" style="width:100%;height:100%;object-fit:cover;display:block"/></sc-if>
-            <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ false }}"><img src="assets/logo.png" alt="The Long & Thick Podcast" style="width:64%;height:auto;display:block"/></sc-if>
+            <sc-if value="{{ a.hasImg }}" hint-placeholder-val="{{ false }}"><img src="{{ a.img }}" alt="{{ a.t }}" style="width:100%;height:100%;object-fit:cover;display:block"/></sc-if>
+            <sc-if value="{{ a.noImg }}" hint-placeholder-val="{{ true }}"><img src="assets/logo.png" alt="The Long & Thick Podcast" style="width:64%;height:auto;display:block"/></sc-if>
           </div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
             <span style="width:8px;height:8px;border-radius:50%;background:{{ a.dot }}"></span>
@@ -161,25 +161,59 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
+  state = { live: null };
+
+  componentDidMount() {
+    // Pull the latest posts from the Substack feed via our Cloudflare
+    // Function. Works on the live site; in preview it quietly falls back
+    // to the built-in list below.
+    fetch("/api/articles")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d && Array.isArray(d.items) && d.items.length) {
+          const live = d.items.slice(0, 6).map(it => ({
+            url: it.link || "https://longandthickpodcast.substack.com/",
+            img: it.image || "",
+            t: it.title || "",
+            d: it.description || "",
+          }));
+          if (live.length) this.setState({ live });
+        }
+      })
+      .catch(() => {});
+  }
+
   renderVals() {
     const dot = {Nutrition:"oklch(0.62 0.16 50)",Recovery:"oklch(0.74 0.15 130)",Training:"oklch(0.55 0.13 250)",Mindset:"oklch(0.78 0.15 75)","The Show":"oklch(0.66 0.16 25)"};
-    const arts = [
+    const fallback = [
       {cat:"The Show", url:"https://longandthickpodcast.substack.com/p/welcome-to-the-newsletter-a-throwback", img:"https://substackcdn.com/image/fetch/$s_!KCeQ!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8b8cd939-77c2-4c31-88fe-1875c124f438_4800x3200.jpeg", t:"Welcome to the Newsletter: A Throwback to Episode One", d:"Where it all started — a look back at episode one, how the show began, and where we're headed next."},
       {cat:"Training", url:"https://longandthickpodcast.substack.com/p/on-having-a-plan-and-knowing-when", img:"https://substackcdn.com/image/fetch/$s_!m26A!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F08d53b60-11ad-45d8-97f9-1909dc8769bb_4800x3200.jpeg", t:"On Having a Plan (And Knowing When to Leave the Gym)", d:"Why training without a plan spins your wheels — and how to tell when the smartest rep is the one you skip."},
       {cat:"Nutrition", url:"https://longandthickpodcast.substack.com/p/the-basics-of-not-sabotaging-yourself", img:"assets/article-food.jpg", t:"The Basics of Not Sabotaging Yourself With Food", d:"Nutrition has a rare gift for turning sane, employed adults into unhinged zealots. Here's the boring version that actually works."},
-    ];
-    return {
-      articles: arts.map(a => ({
-        dot: dot[a.cat] || "#999",
-        meta: a.cat,
-        t: a.t,
-        d: a.d,
-        url: a.url,
-        img: a.img,
-        hasImg: !!a.img,
-        noImg: !a.img,
-      })),
-    };
+    ].map(a => ({
+      dot: dot[a.cat] || "#999",
+      meta: a.cat,
+      t: a.t,
+      d: a.d,
+      url: a.url,
+      img: a.img,
+      hasImg: !!a.img,
+      noImg: !a.img,
+    }));
+
+    const arts = this.state.live
+      ? this.state.live.map(a => ({
+          dot: dot["The Show"],
+          meta: "Substack",
+          t: a.t,
+          d: a.d,
+          url: a.url,
+          img: a.img,
+          hasImg: !!a.img,
+          noImg: !a.img,
+        }))
+      : fallback;
+
+    return { articles: arts };
   }
 }
 </script>
