@@ -392,7 +392,7 @@ class Component extends DCLogic {
   componentDidMount() {
     fetch("/api/episodes").then(r => r.json()).then(d => {
       if (d && Array.isArray(d.items) && d.items.length > 1) {
-        const live = d.items.slice(0, 3).map(it => ({
+        const live = d.items.slice(1, 4).map(it => ({
           url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
           thumb: it.image || "",
           hasThumb: !!it.image,
