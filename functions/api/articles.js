@@ -8,7 +8,7 @@ const FEED_URL = "https://longandthickpodcast.substack.com/feed";
 export async function onRequest(context) {
   try {
     const res = await fetch(FEED_URL, {
-      cf: { cacheTtl: 300 },
+      cf: { cacheTtl: 3600, cacheEverything: true },
       headers: {
         "user-agent": "Mozilla/5.0 (compatible; LTPodcastSite/1.0; +https://ltpodcast.com)",
         "accept": "application/rss+xml, application/xml, text/xml, */*",
