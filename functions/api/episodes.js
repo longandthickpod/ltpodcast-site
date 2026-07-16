@@ -8,13 +8,8 @@ const FEED_URL = "https://anchor.fm/s/1149378ac/podcast/rss";
 
 export async function onRequest(context) {
   try {
-    // cache-bust: Cloudflare's edge cache keys the upstream fetch by URL, so a
-    // bad/empty upstream response (e.g. a transient block) can get stuck for
-    // the full cacheTtl. Tying the key to a 30-min time bucket lets a bad
-    // response self-heal on the next bucket instead of sticking around.
-    const bucket = Math.floor(Date.now() / 1800000);
-    const res = await fetch(`${FEED_URL}?_cb=${bucket}`, {
-      cf: { cacheTtl: 1800, cacheEverything: true },
+    const res = await fetch(FEED_URL, {
+      cf: { cacheTtl: 300 },
       headers: {
         "user-agent": "Mozilla/5.0 (compatible; LTPodcastSite/1.0; +https://ltpodcast.com)",
         "accept": "application/rss+xml, application/xml, text/xml, */*",
