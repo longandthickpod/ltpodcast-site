@@ -427,11 +427,12 @@ class Component extends DCLogic {
     const base = "https://podcasters.spotify.com/pod/show/the-long--thick-podcast/episodes/";
     const img = "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/46301763/";
     const fallback = [
+      {hash:"", thumb:"assets/ep-gym5-adam-wright.jpg", t:"20 Years of GYM5: The Story of Adam Wright and The Life of Gym Ownership", d:"Adam Wright built, rebuilt, and still runs Nashville's legendary GYM5 — now in its 20th year."},
       {slug:"The-Origin-Stories-of-Long--Thick-e3lmhov", hash:"22e63e74c98bcf61", t:"The Origin Stories of Long & Thick", d:"Daniel and Ronnie flip the script and answer the same questions they grill guests with — sports history and the messy road to the show."},
       {slug:"You-Dont-Need-a-Travel-Protocol---You-Need-This-e3lmhoj", hash:"02a96ffcfd32534c", t:"You Don't Need a \"Travel Protocol\" — You Need This", d:"How to travel without disregarding your program and goals — no biohacking required."},
       {slug:"5-Tips-to-Defeating-Your-Training-Plateaus---Episode-Six-Seven-e3lmhpp", hash:"9f2aebff61d4cc4c", t:"5 Tips to Defeating Your Training Plateaus", d:"Five ways to break a stall — because you can't manage what you don't measure."},
       {slug:"We-Played-The-Best-Version-of-Would-You-Rather-e3lmhnm", hash:"c8bcb82dc834ed2f", t:"We Played The Best Version of Would You Rather!", d:"Health's on the afterburner — pure entertainment via a classic game, our way."},
-    ].map(e => ({ url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq", thumb: img + e.hash + ".png", hasThumb: true, noThumb: false, meta: "Watch on Spotify", t: e.t, d: e.d }));
+    ].map(e => ({ url: e.slug ? "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq" : "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq", thumb: e.thumb || (img + e.hash + ".png"), hasThumb: true, noThumb: false, meta: "Watch on Spotify", t: e.t, d: e.d }));
     return { episodes: this.state.live || fallback, articles: this.state.liveArticles || fallbackArticles };
   }
 }

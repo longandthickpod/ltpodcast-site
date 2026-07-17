@@ -127,7 +127,7 @@
     </div>
     <sc-for list="{{ episodes }}" as="ep">
       <a data-ep-row href="{{ ep.url }}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:180px 1fr auto;gap:24px;align-items:center;padding:20px 8px;border-bottom:1px solid #e8e3d8">
-        <div style="aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#1c1a17"><sc-if value="{{ ep.thumb }}" hint-placeholder-val="{{ false }}"><img src="{{ ep.thumb }}" alt="{{ ep.t }}" style="width:100%;height:100%;object-fit:cover;display:block"/></sc-if></div>
+        <div style="aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#1c1a17"><sc-if value="{{ ep.noThumb }}" hint-placeholder-val="{{ true }}"><div style="width:100%;height:100%"></div></sc-if><sc-if value="{{ ep.hasThumb }}" hint-placeholder-val="{{ false }}"><img src="{{ ep.thumb }}" alt="{{ ep.t }}" style="width:100%;height:100%;object-fit:cover;display:block"/></sc-if></div>
         <div>
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
             <span style="width:8px;height:8px;border-radius:50%;background:{{ ep.dot }}"></span>
@@ -198,14 +198,18 @@ class Component extends DCLogic {
       .then(d => {
         if (d && Array.isArray(d.items) && d.items.length > 1) {
           // skip index 0 — that's the hero episode shown above
-          const live = d.items.slice(1, 7).map((it, i) => ({
+          const live = d.items.slice(1, 7).map((it, i) => {
+            const thumb = it.image || "";
+            return {
             url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
-            thumb: it.image || "",
+            thumb,
+            hasThumb: !!thumb,
+            noThumb: !thumb,
             dot: this.dots[i % this.dots.length],
             meta: this.fmtDur(it.duration),
             t: it.title || "",
             d: "",
-          }));
+          };});
           if (live.length) this.setState({ live });
         }
       })
@@ -242,6 +246,8 @@ class Component extends DCLogic {
     ].map(e => ({
       url: e.url || (e.slug ? "https://podcasters.spotify.com/pod/show/the-long--thick-podcast/episodes/" + e.slug : "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq"),
       thumb: e.thumb || (img + e.hash + ".png"),
+      hasThumb: true,
+      noThumb: false,
       dot: dot[e.cat] || "#999",
       meta: e.meta,
       t: e.t,
