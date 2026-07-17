@@ -167,7 +167,7 @@ class Component extends DCLogic {
     // Pull the latest posts from the Substack feed via our Cloudflare
     // Function. Works on the live site; in preview it quietly falls back
     // to the built-in list below.
-    fetch("/api/articles")
+    fetch("/api/articles", { cache: "no-store" })
       .then(r => r.ok ? r.json() : null)
       .then(d => {
         if (d && Array.isArray(d.items) && d.items.length) {

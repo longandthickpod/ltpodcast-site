@@ -404,7 +404,7 @@ class Component extends DCLogic {
         if (live.length) this.setState({ live });
       }
     }).catch(() => {});
-    fetch("/api/articles").then(r => r.json()).then(d => {
+    fetch("/api/articles", { cache: "no-store" }).then(r => r.json()).then(d => {
       if (d && Array.isArray(d.items) && d.items.length) {
         const liveArticles = d.items.slice(0, 3).map(it => ({
           url: it.link || "https://longandthickpodcast.substack.com/",
