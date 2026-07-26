@@ -1,0 +1,17 @@
+/*.html
+  Cache-Control: no-cache
+
+/
+  Cache-Control: no-cache
+
+/index.html
+  Cache-Control: no-cache
+
+/Episodes.dc.html
+  Cache-Control: no-cache
+
+/Articles.dc.html
+  Cache-Control: no-cache
+
+/Merch.dc.html
+  Cache-Control: no-cache
