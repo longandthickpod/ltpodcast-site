@@ -8,4 +8,4 @@ binding = "ASSETS"
 
 [[kv_namespaces]]
 binding = "STOCK_KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "e9bb1068b9da4ab5952ef3b787558703"
