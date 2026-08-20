@@ -122,6 +122,13 @@
             <span style="font-family:'Space Mono',monospace;font-weight:700;font-size:13px;letter-spacing:0.02em;color:#1c1a17;white-space:nowrap">{{ p.price }}</span>
           </div>
           <p style="font-family:'Newsreader',serif;font-size:16px;color:#6b665b;margin:6px 0 10px;line-height:1.4">{{ p.desc }}</p>
+          <sc-if value="{{ p.hasSizes }}">
+            <div style="display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap">
+              <sc-for list="{{ p.sizes }}" as="sz" hint-placeholder-count="5">
+                <button onClick="{{ sz.onClick }}" disabled="{{ sz.disabled }}" style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;padding:7px 12px;border-radius:8px;background:{{ sz.bg }};color:{{ sz.color }};border:{{ sz.border }};text-decoration:{{ sz.textDecoration }};cursor:pointer">{{ sz.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
           <sc-if value="{{ p.buyUrl }}">
             <a href="{{ p.buyUrl }}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px">{{ p.ctaLabel }}</a>
           </sc-if>
@@ -187,15 +194,24 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
-// Fill in the two live Stripe Payment Link URLs once created in the dashboard.
-const SHIRT_BUY_URL = "https://buy.stripe.com/REPLACE_SHIRT_LINK";
-const HAT_BUY_URL = "https://buy.stripe.com/REPLACE_HAT_LINK";
+// Fill in each Stripe Payment Link URL once created in the dashboard.
+// Shirt has one Payment Link per size (Stripe Payment Links can't offer a
+// size dropdown themselves), so each size is its own SKU/link/stock count.
+const SHIRT_SIZE_LINKS = {
+  S: "https://buy.stripe.com/00w3cu0IafDBdTbcEY5sA01",
+  M: "https://buy.stripe.com/00wcN4aiK6312atbAU5sA02",
+  L: "https://buy.stripe.com/6oU7sK4Yq4YX02ldJ25sA03",
+  XL: "https://buy.stripe.com/dRmfZgfD4ajhcP720k5sA04",
+  XXL: "https://buy.stripe.com/7sYdR8cqSezx4iB48s5sA05",
+};
+const HAT_BUY_URL = "https://buy.stripe.com/aFacN41Me775cP7eN65sA00";
 
 class Component extends DCLogic {
-  state = { stock: { shirt: 46, hat: 12 }, loaded: false };
-  // Stripe isn't connected yet — cards show quantity but no live buy button
-  // until SHIRT_BUY_URL / HAT_BUY_URL are filled in above.
-  stripeReady = SHIRT_BUY_URL.includes("REPLACE") ? false : true;
+  state = {
+    stock: { shirt_s: 7, shirt_m: 12, shirt_l: 13, shirt_xl: 8, shirt_xxl: 3, hat: 11 },
+    loaded: false,
+    selectedSize: "S",
+  };
 
   componentDidMount() {
     fetch("/api/stock", { cache: "no-store" })
@@ -204,23 +220,59 @@ class Component extends DCLogic {
       .catch(() => this.setState({ loaded: true }));
   }
 
+  selectSize(sz) { this.setState({ selectedSize: sz }); }
+
   renderVals() {
-    const { shirt, hat } = this.state.stock;
-    const live = (name, desc, price, url, qty, slotId, slotSrc) => {
-      const soldOut = this.state.loaded && qty <= 0;
+    const stock = this.state.stock;
+    const sizes = ["S", "M", "L", "XL", "XXL"];
+    const selectedSize = this.state.selectedSize;
+    const shirtLinkReady = url => !url.includes("REPLACE");
+
+    const sizeButtons = sizes.map(sz => {
+      const key = "shirt_" + sz.toLowerCase();
+      const qty = stock[key] ?? 0;
+      const out = qty <= 0;
+      const active = sz === selectedSize;
       return {
-        name, desc, price, slotId, slotSrc,
-        badge: soldOut ? "Sold out" : `${qty} left`,
-        buyUrl: (soldOut || !this.stripeReady) ? null : url,
-        soldOut,
-        comingSoon: !soldOut && !this.stripeReady,
-        ctaLabel: "Buy now",
+        label: sz,
+        onClick: () => this.selectSize(sz),
+        disabled: out,
+        bg: active ? "#1c1a17" : "#fff",
+        color: active ? "#faf8f3" : (out ? "#c7c1b2" : "#1c1a17"),
+        border: out ? "1.5px solid #e8e3d8" : "1.5px solid #1c1a17",
+        textDecoration: out ? "line-through" : "none",
       };
-    };
+    });
+    const selKey = "shirt_" + selectedSize.toLowerCase();
+    const selQty = stock[selKey] ?? 0;
+    const shirtSoldOut = this.state.loaded && selQty <= 0;
+    const shirtLinkOk = shirtLinkReady(SHIRT_SIZE_LINKS[selectedSize]);
+
+    const hatSoldOut = this.state.loaded && stock.hat <= 0;
+    const hatLinkOk = HAT_BUY_URL && !HAT_BUY_URL.includes("REPLACE");
+
     return {
       products: [
-        live("Long & Thick Logo Tee", "Heavyweight boxy tee, front logo print.", "$35", SHIRT_BUY_URL, shirt, "product-shirt", "assets/merch-tee-front.jpg"),
-        live("Black L&T Dad Hat", "Six-panel black cap, curved brim, adjustable strap.", "$30", HAT_BUY_URL, hat, "product-hat", "assets/merch-hat.jpg"),
+        {
+          name: "Long & Thick Logo Tee", desc: "Front and back logo print.", price: "$35",
+          slotId: "product-shirt", slotSrc: "assets/merch-tee-front.jpg",
+          hasSizes: true, sizes: sizeButtons,
+          badge: shirtSoldOut ? `Sold out (${selectedSize})` : `${selQty} left in ${selectedSize}`,
+          buyUrl: (shirtSoldOut || !shirtLinkOk) ? null : SHIRT_SIZE_LINKS[selectedSize],
+          soldOut: shirtSoldOut,
+          comingSoon: !shirtSoldOut && !shirtLinkOk,
+          ctaLabel: "Buy now",
+        },
+        {
+          name: "Black L&T Dad Hat", desc: "Six-panel black cap, curved brim, adjustable strap.", price: "$30",
+          slotId: "product-hat", slotSrc: "assets/merch-hat.jpg",
+          hasSizes: false, sizes: [],
+          badge: hatSoldOut ? "Sold out" : `${stock.hat} left`,
+          buyUrl: (hatSoldOut || !hatLinkOk) ? null : HAT_BUY_URL,
+          soldOut: hatSoldOut,
+          comingSoon: !hatSoldOut && !hatLinkOk,
+          ctaLabel: "Buy now",
+        },
       ],
     };
   }
