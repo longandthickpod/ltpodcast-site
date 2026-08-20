@@ -20,6 +20,19 @@ export async function onRequest(context) {
     const channelImageMatch = channelBlock.match(/<itunes:image\s+href="([^"]+)"/) || channelBlock.match(/<image>[\s\S]*?<url>([^<]+)<\/url>/);
     const channelImage = channelImageMatch ? channelImageMatch[1].trim() : "";
 
+    const stripHtml = (s) => s
+      .replace(/<[^>]*>/g, " ")
+      .replace(/&amp;/g, "&").replace(/&#39;|&rsquo;/g, "'").replace(/&quot;|&ldquo;|&rdquo;/g, '"')
+      .replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+      .replace(/[\u200B-\u200F\uFEFF]/g, "") // zero-width/joiner junk from show notes
+      .replace(/\s+/g, " ")
+      .trim();
+    const excerpt = (s, max) => {
+      const clean = stripHtml(s);
+      if (clean.length <= max) return clean;
+      return clean.slice(0, clean.lastIndexOf(" ", max)) + "…";
+    };
+
     const items = [];
     const blocks = xml.split("<item>").slice(1).map(b => b.split("</item>")[0]);
     const totalCount = blocks.length;
@@ -30,10 +43,10 @@ export async function onRequest(context) {
         return m[1].replace(/^<!\[CDATA\[/, "").replace(/\]\]>$/, "").trim();
       };
       items.push({
-        title: pick(/<title>([\s\S]*?)<\/title>/),
+        title: stripHtml(pick(/<title>([\s\S]*?)<\/title>/)),
         link: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
         image: pick(/<itunes:image\s+href="([^"]+)"/) || channelImage,
-        description: pick(/<description>([\s\S]*?)<\/description>/) || pick(/<itunes:summary>([\s\S]*?)<\/itunes:summary>/),
+        description: excerpt(pick(/<description>([\s\S]*?)<\/description>/) || pick(/<itunes:summary>([\s\S]*?)<\/itunes:summary>/), 240),
         duration: pick(/<itunes:duration>([\s\S]*?)<\/itunes:duration>/),
         pubDate: pick(/<pubDate>([\s\S]*?)<\/pubDate>/),
       });
