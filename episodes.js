@@ -9,7 +9,7 @@ const FEED_URL = "https://anchor.fm/s/1149378ac/podcast/rss";
 export async function onRequest(context) {
   try {
     const res = await fetch(FEED_URL, {
-      cf: { cacheTtl: 3600, cacheEverything: true },
+      cf: { cacheTtl: 300, cacheEverything: true },
       headers: {
         "user-agent": "Mozilla/5.0 (compatible; LTPodcastSite/1.0; +https://ltpodcast.com)",
         "accept": "application/rss+xml, application/xml, text/xml, */*",
@@ -32,6 +32,7 @@ export async function onRequest(context) {
         title: pick(/<title>([\s\S]*?)<\/title>/),
         link: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
         image: pick(/<itunes:image\s+href="([^"]+)"/) || channelImage,
+        description: pick(/<description>([\s\S]*?)<\/description>/) || pick(/<itunes:summary>([\s\S]*?)<\/itunes:summary>/),
         duration: pick(/<itunes:duration>([\s\S]*?)<\/itunes:duration>/),
         pubDate: pick(/<pubDate>([\s\S]*?)<\/pubDate>/),
       });
@@ -41,7 +42,7 @@ export async function onRequest(context) {
       headers: {
         "content-type": "application/json; charset=utf-8",
         "access-control-allow-origin": "*",
-        "cache-control": "public, max-age=1800",
+        "cache-control": "public, max-age=300",
       },
     });
   } catch (e) {

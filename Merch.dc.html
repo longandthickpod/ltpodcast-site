@@ -85,7 +85,7 @@
     <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:16px">The store</div>
     <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
       <h1 style="font-weight:900;font-size:120px;line-height:0.82;letter-spacing:-0.045em;text-transform:uppercase;margin:0 0 24px">Merch</h1>
-      <span style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;background:#1c1a17;color:#faf8f3;padding:9px 16px;border-radius:100px;margin-bottom:18px">Coming soon</span>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;background:#1c1a17;color:#faf8f3;padding:9px 16px;border-radius:100px;margin-bottom:18px">First drop live</span>
     </div>
     <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 8px">Tees, mugs and hoodies for people who lift heavy, read the studies, and still know how to have fun. The first drop is in the works — join the newsletter and you'll be first through the door when it opens.</p>
   </section>
@@ -114,13 +114,19 @@
         <div style="display:block">
           <div style="aspect-ratio:1;border:1.5px solid #e8e3d8;border-radius:18px;background-image:repeating-linear-gradient(45deg,#ece7da 0 11px,#f4efe5 11px 22px);display:flex;align-items:center;justify-content:center;margin-bottom:16px;position:relative;overflow:hidden">
             <span style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f">product shot</span>
-            <span style="position:absolute;top:14px;left:14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:#1c1a17;color:#faf8f3;padding:6px 11px;border-radius:100px">Coming soon</span>
+            <span style="position:absolute;top:14px;left:14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:#1c1a17;color:#faf8f3;padding:6px 11px;border-radius:100px">{{ p.badge }}</span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
             <h4 style="font-weight:800;font-size:21px;line-height:1.12;letter-spacing:-0.02em;margin:0">{{ p.name }}</h4>
-            <span style="font-family:'Space Mono',monospace;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;color:#a59f8f;white-space:nowrap">Soon</span>
+            <span style="font-family:'Space Mono',monospace;font-weight:700;font-size:13px;letter-spacing:0.02em;color:#1c1a17;white-space:nowrap">{{ p.price }}</span>
           </div>
-          <p style="font-family:'Newsreader',serif;font-size:16px;color:#6b665b;margin:6px 0 0;line-height:1.4">{{ p.desc }}</p>
+          <p style="font-family:'Newsreader',serif;font-size:16px;color:#6b665b;margin:6px 0 10px;line-height:1.4">{{ p.desc }}</p>
+          <sc-if value="{{ p.buyUrl }}">
+            <a href="{{ p.buyUrl }}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px">{{ p.ctaLabel }}</a>
+          </sc-if>
+          <sc-if value="{{ p.soldOut }}">
+            <span style="display:inline-flex;align-items:center;gap:8px;background:#e8e3d8;color:#8a8579;border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px">Sold out</span>
+          </sc-if>
         </div>
       </sc-for>
     </div>
@@ -177,16 +183,40 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
+// Fill in the two live Stripe Payment Link URLs once created in the dashboard.
+const SHIRT_BUY_URL = "https://buy.stripe.com/REPLACE_SHIRT_LINK";
+const HAT_BUY_URL = "https://buy.stripe.com/REPLACE_HAT_LINK";
+
 class Component extends DCLogic {
+  state = { stock: { shirt: 46, hat: 12 }, loaded: false };
+
+  componentDidMount() {
+    fetch("/api/stock", { cache: "no-store" })
+      .then(r => r.json())
+      .then(stock => this.setState({ stock, loaded: true }))
+      .catch(() => this.setState({ loaded: true }));
+  }
+
   renderVals() {
+    const { shirt, hat } = this.state.stock;
+    const live = (name, desc, price, url, qty) => {
+      const soldOut = this.state.loaded && qty <= 0;
+      return {
+        name, desc, price,
+        badge: soldOut ? "Sold out" : `${qty} left`,
+        buyUrl: soldOut ? null : url,
+        soldOut,
+        ctaLabel: "Buy now",
+      };
+    };
     return {
       products: [
-        {tag:"New", name:"Cut The Bullsh*t Tee", price:"$34", desc:"Heavyweight boxy tee, front logo print."},
-        {tag:"Bestseller", name:"Long & Thick Hoodie", price:"$68", desc:"Midweight fleece, embroidered chest mark."},
-        {tag:"", name:"The Gym Mug", price:"$18", desc:"15oz ceramic. Holds coffee, pre-workout, or regret."},
-        {tag:"", name:"Logo Dad Cap", price:"$28", desc:"Six-panel, curved brim, adjustable strap."},
-        {tag:"", name:"Recovery Crewneck", price:"$58", desc:"Soft brushed-back crew for rest days."},
-        {tag:"Limited", name:"Skate-Deck Print", price:"$45", desc:"Show-art deck, screen-printed, hang or ride."},
+        live("Cut The Bullsh*t Tee", "Heavyweight boxy tee, front logo print.", "$34", SHIRT_BUY_URL, shirt),
+        live("Logo Dad Cap", "Six-panel, curved brim, adjustable strap.", "$28", HAT_BUY_URL, hat),
+        {name:"Long & Thick Hoodie", price:"$68", desc:"Midweight fleece, embroidered chest mark.", badge:"Coming soon", buyUrl:null, soldOut:false},
+        {name:"The Gym Mug", price:"$18", desc:"15oz ceramic. Holds coffee, pre-workout, or regret.", badge:"Coming soon", buyUrl:null, soldOut:false},
+        {name:"Recovery Crewneck", price:"$58", desc:"Soft brushed-back crew for rest days.", badge:"Coming soon", buyUrl:null, soldOut:false},
+        {name:"Skate-Deck Print", price:"$45", desc:"Show-art deck, screen-printed, hang or ride.", badge:"Coming soon", buyUrl:null, soldOut:false},
       ],
     };
   }
