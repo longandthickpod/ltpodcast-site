@@ -8,7 +8,7 @@ const FEED_URL = "https://longandthickpodcast.substack.com/feed";
 export async function onRequest(context) {
   try {
     const res = await fetch(FEED_URL, {
-      cf: { cacheTtl: 3600, cacheEverything: true },
+      cf: { cacheTtl: 300, cacheEverything: true },
       headers: {
         "user-agent": "Mozilla/5.0 (compatible; LTPodcastSite/1.0; +https://ltpodcast.com)",
         "accept": "application/rss+xml, application/xml, text/xml, */*",
@@ -17,7 +17,7 @@ export async function onRequest(context) {
     const xml = await res.text();
 
     const items = [];
-    const blocks = xml.split("<item>").slice(1);
+    const blocks = xml.split("<item>").slice(1).map(b => b.split("</item>")[0]);
     for (const block of blocks.slice(0, 12)) {
       const pick = (re) => {
         const m = block.match(re);
@@ -44,11 +44,13 @@ export async function onRequest(context) {
       });
     }
 
+    items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
     return new Response(JSON.stringify({ items, _debug: items.length ? undefined : { status: res.status, len: xml.length } }), {
       headers: {
         "content-type": "application/json; charset=utf-8",
         "access-control-allow-origin": "*",
-        "cache-control": "public, max-age=1800",
+        "cache-control": "public, max-age=300",
       },
     });
   } catch (e) {
