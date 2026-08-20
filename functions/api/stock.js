@@ -1,7 +1,7 @@
 // Returns current stock counts for the two live SKUs.
 // Backed by a Cloudflare KV namespace (binding: STOCK_KV) so the
 // stripe-webhook function can decrement it on each sale.
-const INITIAL_STOCK = { shirt: 46, hat: 12 };
+const INITIAL_STOCK = { shirt_s: 7, shirt_m: 12, shirt_l: 13, shirt_xl: 8, shirt_xxl: 3, hat: 11 };
 
 export async function onRequest({ request, env }) {
   const headers = { "content-type": "application/json", "cache-control": "no-store" };

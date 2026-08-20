@@ -4,11 +4,15 @@
 // Map Stripe Price IDs to our internal SKUs — fill these in once the two
 // Payment Links / Prices exist in the Stripe dashboard.
 const PRICE_TO_SKU = {
-  // "price_XXXXXXXXXXXXXX": "shirt",
-  // "price_YYYYYYYYYYYYYY": "hat",
+  "price_1U6b6iBn6q2OqjaasnnZNQv1": "shirt_s",
+  "price_1U6c2sBn6q2Oqjaalvk9EC3X": "shirt_m",
+  "price_1U6c3SBn6q2OqjaaBVBhJUys": "shirt_l",
+  "price_1U6c46Bn6q2OqjaahAUlALik": "shirt_xl",
+  "price_1U6c4UBn6q2OqjaaXvuSutX8": "shirt_xxl",
+  "price_1U6b7XBn6q2OqjaaaQ4TYNoF": "hat",
 };
 
-const INITIAL_STOCK = { shirt: 46, hat: 12 };
+const INITIAL_STOCK = { shirt_s: 7, shirt_m: 0, shirt_l: 0, shirt_xl: 0, shirt_xxl: 0, hat: 12 };
 
 async function verifyStripeSignature(payload, sigHeader, secret) {
   const parts = Object.fromEntries(sigHeader.split(",").map(p => p.split("=")));
