@@ -26,6 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,18,400;0,18,500;1,18,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
 <style>
   *{box-sizing:border-box}
   body{margin:0;background:#faf8f3}
@@ -85,21 +86,21 @@
     <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:16px">The store</div>
     <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
       <h1 style="font-weight:900;font-size:120px;line-height:0.82;letter-spacing:-0.045em;text-transform:uppercase;margin:0 0 24px">Merch</h1>
-      <span style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;background:#1c1a17;color:#faf8f3;padding:9px 16px;border-radius:100px;margin-bottom:18px">First drop live</span>
+      <span style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;background:#e8e3d8;color:#6b665b;padding:9px 16px;border-radius:100px;margin-bottom:18px">Sales opening soon</span>
     </div>
-    <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 8px">Tees, mugs and hoodies for people who lift heavy, read the studies, and still know how to have fun. The first drop is in the works — join the newsletter and you'll be first through the door when it opens.</p>
+    <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 8px">The Long &amp; Thick Logo Tee and Black Dad Hat are the first drop — join the newsletter and you'll be first to know the second checkout opens.</p>
   </section>
 
   <!-- FEATURED BANNER -->
   <section style="max-width:1200px;margin:0 auto;padding:32px 32px 8px">
-    <div style="background:oklch(0.74 0.15 130);border:2px solid #1c1a17;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1.05fr 0.95fr">
-      <div style="padding:52px;display:flex;flex-direction:column;justify-content:center">
-        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#1c1a17;opacity:0.7;margin-bottom:14px">First drop</div>
-        <h2 style="font-weight:900;font-size:48px;line-height:0.96;letter-spacing:-0.03em;margin:0 0 16px;color:#1c1a17">The "Cut The<br>Bullsh*t" Tee</h2>
-        <p style="font-family:'Newsreader',serif;font-size:18px;line-height:1.5;color:#1c1a17;opacity:0.85;max-width:380px;margin:0 0 26px">Heavyweight cotton, boxy fit, screen-printed logo. The one we wear to record — first off the press when the store opens.</p>
-        <a href="Newsletter Funnel.dc.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:15px 28px;font-weight:700;font-size:16px;align-self:flex-start">Notify me when it drops →</a>
+    <div style="background:#1c1a17;border-radius:24px;display:grid;grid-template-columns:1.05fr 0.95fr">
+      <div style="padding:52px;display:flex;flex-direction:column;justify-content:center;border-radius:24px 0 0 24px">
+        <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(0.74 0.15 130);margin-bottom:14px">First drop</div>
+        <h2 style="font-weight:900;font-size:48px;line-height:0.96;letter-spacing:-0.03em;margin:0 0 16px;color:#faf8f3">The Long &amp;<br>Thick Logo Tee</h2>
+        <p style="font-family:'Newsreader',serif;font-size:18px;line-height:1.5;color:#bdb8aa;max-width:380px;margin:0 0 26px">Heavyweight cotton, boxy fit, screen-printed logo. The one we wear to record — first off the press when checkout opens.</p>
+        <a href="Newsletter Funnel.dc.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;background:oklch(0.74 0.15 130);color:#1c1a17;border-radius:100px;padding:15px 28px;font-weight:700;font-size:16px;align-self:flex-start">Notify me when it drops →</a>
       </div>
-      <div style="background-image:repeating-linear-gradient(45deg,oklch(0.70 0.15 130) 0 14px,oklch(0.72 0.15 130) 14px 28px);display:flex;align-items:center;justify-content:center;border-left:2px solid #1c1a17;min-height:340px"><span style="font-family:'Space Mono',monospace;font-size:12px;color:#1c1a17;opacity:0.5">hero product shot</span></div>
+      <div style="position:relative;height:420px;overflow:hidden;border-radius:0 24px 24px 0"><image-slot id="merch-hero" shape="rect" src="assets/merch-tee-back.jpg" placeholder="Drop the hero product shot"></image-slot></div>
     </div>
   </section>
 
@@ -112,9 +113,9 @@
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px">
       <sc-for list="{{ products }}" as="p" hint-placeholder-count="6">
         <div style="display:block">
-          <div style="aspect-ratio:1;border:1.5px solid #e8e3d8;border-radius:18px;background-image:repeating-linear-gradient(45deg,#ece7da 0 11px,#f4efe5 11px 22px);display:flex;align-items:center;justify-content:center;margin-bottom:16px;position:relative;overflow:hidden">
-            <span style="font-family:'Space Mono',monospace;font-size:11px;color:#a59f8f">product shot</span>
-            <span style="position:absolute;top:14px;left:14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:#1c1a17;color:#faf8f3;padding:6px 11px;border-radius:100px">{{ p.badge }}</span>
+          <div style="aspect-ratio:1;border:1.5px solid #e8e3d8;border-radius:18px;margin-bottom:16px;position:relative;overflow:hidden">
+            <image-slot id="{{ p.slotId }}" shape="rect" src="{{ p.slotSrc }}" placeholder="Drop a product photo"></image-slot>
+            <span style="position:absolute;top:14px;left:14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;background:#1c1a17;color:#faf8f3;padding:6px 11px;border-radius:100px;z-index:2;pointer-events:none">{{ p.badge }}</span>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
             <h4 style="font-weight:800;font-size:21px;line-height:1.12;letter-spacing:-0.02em;margin:0">{{ p.name }}</h4>
@@ -126,6 +127,9 @@
           </sc-if>
           <sc-if value="{{ p.soldOut }}">
             <span style="display:inline-flex;align-items:center;gap:8px;background:#e8e3d8;color:#8a8579;border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px">Sold out</span>
+          </sc-if>
+          <sc-if value="{{ p.comingSoon }}">
+            <span style="display:inline-flex;align-items:center;gap:8px;background:#e8e3d8;color:#8a8579;border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px">Coming soon</span>
           </sc-if>
         </div>
       </sc-for>
@@ -189,6 +193,9 @@ const HAT_BUY_URL = "https://buy.stripe.com/REPLACE_HAT_LINK";
 
 class Component extends DCLogic {
   state = { stock: { shirt: 46, hat: 12 }, loaded: false };
+  // Stripe isn't connected yet — cards show quantity but no live buy button
+  // until SHIRT_BUY_URL / HAT_BUY_URL are filled in above.
+  stripeReady = SHIRT_BUY_URL.includes("REPLACE") ? false : true;
 
   componentDidMount() {
     fetch("/api/stock", { cache: "no-store" })
@@ -199,24 +206,21 @@ class Component extends DCLogic {
 
   renderVals() {
     const { shirt, hat } = this.state.stock;
-    const live = (name, desc, price, url, qty) => {
+    const live = (name, desc, price, url, qty, slotId, slotSrc) => {
       const soldOut = this.state.loaded && qty <= 0;
       return {
-        name, desc, price,
+        name, desc, price, slotId, slotSrc,
         badge: soldOut ? "Sold out" : `${qty} left`,
-        buyUrl: soldOut ? null : url,
+        buyUrl: (soldOut || !this.stripeReady) ? null : url,
         soldOut,
+        comingSoon: !soldOut && !this.stripeReady,
         ctaLabel: "Buy now",
       };
     };
     return {
       products: [
-        live("Cut The Bullsh*t Tee", "Heavyweight boxy tee, front logo print.", "$34", SHIRT_BUY_URL, shirt),
-        live("Logo Dad Cap", "Six-panel, curved brim, adjustable strap.", "$28", HAT_BUY_URL, hat),
-        {name:"Long & Thick Hoodie", price:"$68", desc:"Midweight fleece, embroidered chest mark.", badge:"Coming soon", buyUrl:null, soldOut:false},
-        {name:"The Gym Mug", price:"$18", desc:"15oz ceramic. Holds coffee, pre-workout, or regret.", badge:"Coming soon", buyUrl:null, soldOut:false},
-        {name:"Recovery Crewneck", price:"$58", desc:"Soft brushed-back crew for rest days.", badge:"Coming soon", buyUrl:null, soldOut:false},
-        {name:"Skate-Deck Print", price:"$45", desc:"Show-art deck, screen-printed, hang or ride.", badge:"Coming soon", buyUrl:null, soldOut:false},
+        live("Long & Thick Logo Tee", "Heavyweight boxy tee, front logo print.", "$34", SHIRT_BUY_URL, shirt, "product-shirt", "assets/merch-tee-front.jpg"),
+        live("Black L&T Dad Hat", "Six-panel black cap, curved brim, adjustable strap.", "$28", HAT_BUY_URL, hat, "product-hat", "assets/merch-hat.jpg"),
       ],
     };
   }

@@ -438,6 +438,8 @@ class Component extends DCLogic {
     const base = "https://podcasters.spotify.com/pod/show/the-long--thick-podcast/episodes/";
     const img = "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_episode/46301763/";
     const fallback = [
+      {hash:"", thumb:"https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/46301763/94997c81cf85385f.png", t:"LTP Featuring Dr. Kyle Iguchi", d:"Kyle Iguchi is a Physical Therapist based out of Orange County, discussing the ankle epidemic and how to train to stack the odds in your favor."},
+      {hash:"", thumb:"assets/ep-evan-singleton.jpg", t:"Evan Singleton - The Strongest Man on Earth", d:"Evan Singleton went from the WWE to bodybuilding to Strongman — and in August 2025 became The Strongest Man on Earth."},
       {hash:"", thumb:"https://image-cdn-fa.spotifycdn.com/image/ab6772ab00001692ca3af933f51e1ea35c508d70", t:"Caffeine 101 - The World's Most Beloved Drug", d:"A shorter episode diving into the world's most beloved drug — how caffeine interacts with our bodies, why it doesn't actually give us energy, dependency, and how to clear the system."},
       {hash:"", thumb:"assets/ep-jared-johnson.jpg", t:"Jared Johnson: Coffee, Entrepreneurship and Life with Hyper-mobility", d:"Daniel and Ronnie sit down with Jared Johnson to talk coffee, building a business from the ground up, and navigating life and training with hyper-mobility."},
       {hash:"", thumb:"assets/ep-gym5-adam-wright.jpg", t:"20 Years of GYM5: The Story of Adam Wright and The Life of Gym Ownership", d:"Adam Wright built, rebuilt, and still runs Nashville's legendary GYM5 — now in its 20th year."},
@@ -447,11 +449,11 @@ class Component extends DCLogic {
       {slug:"We-Played-The-Best-Version-of-Would-You-Rather-e3lmhnm", hash:"c8bcb82dc834ed2f", t:"We Played The Best Version of Would You Rather!", d:"Health's on the afterburner — pure entertainment via a classic game, our way."},
     ].map(e => ({ url: e.slug ? "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq" : "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq", thumb: e.thumb || (img + e.hash + ".png"), hasThumb: true, noThumb: false, meta: "Watch on Spotify", t: e.t, d: e.d }));
     const fallbackHero = {
-      url: "https://open.spotify.com/episode/5e0GBB63lLWJwk7kUVqSRH",
-      thumb: "assets/ep-evan-singleton.jpg",
+      url: "https://podcasters.spotify.com/pod/show/the-long--thick-podcast/episodes/LTP-Featuring-Steve-Harlow-e3nbcb4",
+      thumb: "https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/46301763/94997c81cf85385f.png",
       hasThumb: true,
-      t: "Evan Singleton - The Strongest Man on Earth",
-      d: "Evan Singleton went from the WWE to bodybuilding to Strongman — and in August 2025 became The Strongest Man on Earth. We sit down with the 7x Giants Live Champion to talk his wild path and what it takes to get there.",
+      t: "LTP Featuring Steve Harlow",
+      d: "Steve Harlow is a father, coach, business man, and fellow coffee enthusiast. We hear his story of changing careers, building the Nashville fitness community, and roasting coffee through his business, CaffCon.",
     };
     return { episodes: this.state.live || fallback, articles: this.state.liveArticles || fallbackArticles, hero: this.state.hero || fallbackHero };
   }
