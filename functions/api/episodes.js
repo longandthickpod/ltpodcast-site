@@ -22,6 +22,7 @@ export async function onRequest(context) {
 
     const items = [];
     const blocks = xml.split("<item>").slice(1).map(b => b.split("</item>")[0]);
+    const totalCount = blocks.length;
     for (const block of blocks.slice(0, 15)) {
       const pick = (re) => {
         const m = block.match(re);
@@ -40,7 +41,7 @@ export async function onRequest(context) {
 
     items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
-    return new Response(JSON.stringify({ items }), {
+    return new Response(JSON.stringify({ items, totalCount }), {
       headers: {
         "content-type": "application/json; charset=utf-8",
         "access-control-allow-origin": "*",
