@@ -26,6 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,18,400;0,18,500;1,18,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
 <style>
   *{box-sizing:border-box}
   body{margin:0;background:#faf8f3}
@@ -126,7 +127,7 @@
         <a href="#listen" style="text-decoration:none;display:flex;align-items:center;gap:11px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:15px 28px;font-weight:700;font-size:16px">
           <span style="width:0;height:0;border-left:11px solid oklch(0.74 0.15 130);border-top:7px solid transparent;border-bottom:7px solid transparent"></span>Play latest episode
         </a>
-        <div style="font-family:'Space Mono',monospace;font-size:13px;color:#8a8579;line-height:1.4">70 episodes<br>new drops weekly</div>
+        <div style="font-family:'Space Mono',monospace;font-size:13px;color:#8a8579;line-height:1.4">{{ episodeCount }} episodes<br>new drops weekly</div>
       </div>
     </div>
     <div style="position:relative">
@@ -174,7 +175,7 @@
           <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:14px">The show</div>
           <h2 style="font-weight:900;font-size:76px;line-height:0.86;letter-spacing:-0.04em;text-transform:uppercase;margin:0">Episodes</h2>
         </div>
-        <p style="font-family:'Newsreader',serif;font-size:20px;line-height:1.5;color:#46433c;margin:0 0 6px;max-width:460px">We're 70 episodes deep and dropping new ones weekly — honest conversations about training, recovery, nutrition and the wellness trends that don't deserve your money, plus guests who actually know their stuff.</p>
+        <p style="font-family:'Newsreader',serif;font-size:20px;line-height:1.5;color:#46433c;margin:0 0 6px;max-width:460px">We're {{ episodeCount }} episodes deep and dropping new ones weekly — honest conversations about training, recovery, nutrition and the wellness trends that don't deserve your money, plus guests who actually know their stuff.</p>
       </div>
     </div>    <a href="{{ hero.url }}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:2px solid #1c1a17;border-radius:20px;overflow:hidden;background:#fff">
       <div style="aspect-ratio:16/10;position:relative;overflow:hidden;background:#1c1a17">
@@ -314,20 +315,31 @@
           <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:14px">Wear it</div>
           <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
             <h2 style="font-weight:900;font-size:76px;line-height:0.86;letter-spacing:-0.04em;text-transform:uppercase;margin:0">Merch</h2>
-            <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;background:#1c1a17;color:#faf8f3;padding:8px 14px;border-radius:100px">Coming soon</span>
+            <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;background:#e8e3d8;color:#6b665b;padding:8px 14px;border-radius:100px">First drop coming</span>
           </div>
         </div>
-        <p style="font-family:'Newsreader',serif;font-size:20px;line-height:1.5;color:#46433c;margin:0 0 6px;max-width:460px">Tees, mugs and hoodies for people who lift heavy, read the studies, and still know how to have fun. We're putting the first drop together now — get on the newsletter to hear the second it lands.</p>
+        <p style="font-family:'Newsreader',serif;font-size:20px;line-height:1.5;color:#46433c;margin:0 0 6px;max-width:460px">The Long &amp; Thick Logo Tee and Black Dad Hat — join the newsletter and you'll be first to know when checkout opens.</p>
       </div>
     </div>
 
-    <div style="background:oklch(0.74 0.15 130);border:2px solid #1c1a17;border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 0.9fr">
-      <div style="padding:56px">
-        <h2 style="font-weight:900;font-size:46px;line-height:0.98;letter-spacing:-0.03em;margin:0 0 18px;color:#1c1a17">Dropping<br>soon.</h2>
-        <p style="font-family:'Newsreader',serif;font-size:19px;line-height:1.5;color:#1c1a17;opacity:0.85;max-width:380px;margin:0 0 30px">The first run of tees and hoodies is in the works. Join the newsletter and you'll be first to know when the store opens.</p>
-        <a href="Newsletter Funnel.dc.html" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;background:#1c1a17;color:#faf8f3;border-radius:100px;padding:15px 28px;font-weight:700;font-size:16px">Notify me →</a>
-      </div>
-      <div style="background-image:repeating-linear-gradient(45deg,oklch(0.70 0.15 130) 0 14px,oklch(0.72 0.15 130) 14px 28px);display:flex;align-items:center;justify-content:center;border-left:2px solid #1c1a17"><span style="font-family:'Space Mono',monospace;font-size:12px;color:#1c1a17;opacity:0.5">merch shot</span></div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px">
+      <a href="Merch.dc.html" style="text-decoration:none;color:inherit;display:block">
+        <div style="aspect-ratio:4/3;border:1.5px solid #e8e3d8;border-radius:16px;overflow:hidden;position:relative;margin-bottom:14px"><image-slot id="about-merch-shirt" shape="rect" src="assets/merch-tee-front.jpg" placeholder="Shirt photo"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <h4 style="font-weight:800;font-size:20px;letter-spacing:-0.02em;margin:0">Long &amp; Thick Logo Tee</h4>
+          <span style="font-family:'Space Mono',monospace;font-weight:700;font-size:13px">$35</span>
+        </div>
+      </a>
+      <a href="Merch.dc.html" style="text-decoration:none;color:inherit;display:block">
+        <div style="aspect-ratio:4/3;border:1.5px solid #e8e3d8;border-radius:16px;overflow:hidden;position:relative;margin-bottom:14px"><image-slot id="about-merch-hat" shape="rect" src="assets/merch-hat.jpg" placeholder="Hat photo"></image-slot></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline">
+          <h4 style="font-weight:800;font-size:20px;letter-spacing:-0.02em;margin:0">Black L&amp;T Dad Hat</h4>
+          <span style="font-family:'Space Mono',monospace;font-weight:700;font-size:13px">$30</span>
+        </div>
+      </a>
+    </div>
+    <div style="margin-top:28px;border-top:1px solid #e8e3d8;padding-top:20px">
+      <a href="Merch.dc.html" style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:#1c1a17;text-decoration:none;letter-spacing:0.02em">Visit the shop →</a>
     </div>
   </section>
 
@@ -402,6 +414,9 @@ class Component extends DCLogic {
         };
         this.setState({ hero });
       }
+      if (typeof d.totalCount === "number" && d.totalCount > 0) {
+        this.setState({ episodeCount: d.totalCount });
+      }
       if (d && Array.isArray(d.items) && d.items.length > 1) {
         const live = d.items.slice(1, 4).map(it => ({
           url: "https://open.spotify.com/show/2UeHpUXYpt1Cd0QLHPg4cq",
@@ -455,7 +470,7 @@ class Component extends DCLogic {
       t: "LTP Featuring Steve Harlow",
       d: "Steve Harlow is a father, coach, business man, and fellow coffee enthusiast. We hear his story of changing careers, building the Nashville fitness community, and roasting coffee through his business, CaffCon.",
     };
-    return { episodes: this.state.live || fallback, articles: this.state.liveArticles || fallbackArticles, hero: this.state.hero || fallbackHero };
+    return { episodes: this.state.live || fallback, articles: this.state.liveArticles || fallbackArticles, hero: this.state.hero || fallbackHero, episodeCount: this.state.episodeCount || 76 };
   }
 }
 </script>

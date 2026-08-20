@@ -86,7 +86,7 @@
   <section style="max-width:1200px;margin:0 auto;padding:64px 32px 8px">
     <div style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579;margin-bottom:16px">The full catalog</div>
     <h1 style="font-weight:900;font-size:120px;line-height:0.82;letter-spacing:-0.045em;text-transform:uppercase;margin:0 0 24px">Episodes</h1>
-    <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 36px">Seventy episodes deep and counting. Training, recovery, nutrition, and the wellness nonsense we love to take apart — new drops every week.</p>
+    <p style="font-family:'Newsreader',serif;font-size:22px;line-height:1.5;color:#46433c;max-width:620px;margin:0 0 36px">{{ episodeCount }} episodes deep and counting. Training, recovery, nutrition, and the wellness nonsense we love to take apart — new drops every week.</p>
     <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
       <span style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#8a8579">Listen &amp; watch on</span>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -187,7 +187,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { live: null, hero: null };
+  state = { live: null, hero: null, episodeCount: null };
 
   componentDidMount() {
     // Pull the latest episodes from the Spotify feed via our Cloudflare
@@ -221,6 +221,9 @@ class Component extends DCLogic {
             d: "",
           };});
           if (live.length) this.setState({ live });
+        }
+        if (typeof d.totalCount === "number" && d.totalCount > 0) {
+          this.setState({ episodeCount: d.totalCount });
         }
       })
       .catch(() => {});
@@ -273,7 +276,7 @@ class Component extends DCLogic {
       t: "LTP Featuring Steve Harlow",
       d: "Steve Harlow is a father, coach, business man, and fellow coffee enthusiast. We hear his story of changing careers, building the Nashville fitness community, and roasting coffee through his business, CaffCon.",
     };
-    return { episodes: this.state.live || fallback, hero: this.state.hero || fallbackHero };
+    return { episodes: this.state.live || fallback, hero: this.state.hero || fallbackHero, episodeCount: this.state.episodeCount || 76 };
   }
 }
 </script>
