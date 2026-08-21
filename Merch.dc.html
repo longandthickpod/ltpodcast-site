@@ -39,6 +39,7 @@
     header nav{order:3;width:100%;justify-content:center;gap:18px !important;font-size:14px !important}
     [style*="grid-template-columns"]{grid-template-columns:1fr !important}
     [style*="height: 420px"]{height:220px !important;border-radius:0 0 24px 24px !important}
+    [data-hero-frame]{height:220px !important;border-radius:0 0 24px 24px !important}
     [style*="gap: 64px"]{gap:30px !important}
     [style*="gap: 56px"]{gap:28px !important}
     [style*="font-size: 120px"]{font-size:52px !important}
@@ -61,6 +62,15 @@
     [data-nav-cta]{display:none !important}
   }
 </style>
+<script>
+  // Stripe checkout is a full cross-origin navigation; some browsers restore
+  // this page from bfcache on "back" without re-firing layout/ResizeObserver
+  // work, which can leave the hero image-slot sized from a stale measurement.
+  // Forcing a resize event on restore makes it re-measure against real layout.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) window.dispatchEvent(new Event('resize'));
+  });
+</script>
 </helmet>
 
 <div style="background:#faf8f3;color:#1c1a17;font-family:'Archivo',sans-serif;min-height:100vh">
@@ -100,7 +110,7 @@
         <p style="font-family:'Newsreader',serif;font-size:18px;line-height:1.5;color:#bdb8aa;max-width:380px;margin:0 0 26px">Heavyweight cotton, boxy fit, screen-printed logo. The one we wear to record.</p>
         <a href="#shop" style="text-decoration:none;display:inline-flex;align-items:center;gap:9px;background:oklch(0.74 0.15 130);color:#1c1a17;border-radius:100px;padding:15px 28px;font-weight:700;font-size:16px;align-self:flex-start">Shop now →</a>
       </div>
-      <div style="position:relative;height:420px;overflow:hidden;border-radius:0 24px 24px 0"><image-slot id="merch-hero" shape="rect" src="assets/merch-tee-back.jpg" placeholder="Drop the hero product shot"></image-slot></div>
+      <div data-hero-frame style="position:relative;height:420px;overflow:hidden;border-radius:0 24px 24px 0"><image-slot id="merch-hero" shape="rect" src="assets/merch-tee-back.jpg" placeholder="Drop the hero product shot"></image-slot></div>
     </div>
   </section>
 
