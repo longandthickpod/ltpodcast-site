@@ -63,12 +63,18 @@
   }
 </style>
 <script>
-  // Stripe checkout is a full cross-origin navigation; some browsers restore
-  // this page from bfcache on "back" without re-firing layout/ResizeObserver
-  // work, which can leave the hero image-slot sized from a stale measurement.
-  // Forcing a resize event on restore makes it re-measure against real layout.
+  // Stripe checkout is a full cross-origin navigation; some mobile browsers
+  // restore this page from bfcache on "back" with an image-slot's internal
+  // geometry stuck at whatever it was mid-navigation. image-slot only
+  // recalculates when its own box actually resizes (ResizeObserver), so a
+  // plain window resize event doesn't help — toggle each slot's display off
+  // and back on to force a real resize tick and a fresh, correct layout.
   window.addEventListener('pageshow', (e) => {
-    if (e.persisted) window.dispatchEvent(new Event('resize'));
+    if (!e.persisted) return;
+    document.querySelectorAll('image-slot').forEach((el) => {
+      el.style.display = 'none';
+      requestAnimationFrame(() => { el.style.display = ''; });
+    });
   });
 </script>
 </helmet>
