@@ -6,9 +6,13 @@
 const PRICE_TO_SKU = {
   "price_1U6b6iBn6q2OqjaasnnZNQv1": "shirt_s",
   "price_1U6c2sBn6q2Oqjaalvk9EC3X": "shirt_m",
+  "price_1U70pxBn6q2OqjaaNjeOjFnF": "shirt_m",
   "price_1U6c3SBn6q2OqjaaBVBhJUys": "shirt_l",
+  "price_1U70vBBn6q2OqjaabPmiYuym": "shirt_l",
   "price_1U6c46Bn6q2OqjaahAUlALik": "shirt_xl",
+  "price_1U713TBn6q2OqjaaD42Uf0uk": "shirt_xl",
   "price_1U6c4UBn6q2OqjaaXvuSutX8": "shirt_xxl",
+  "price_1U710OBn6q2Oqjaa34so0Lvn": "shirt_xxl",
   "price_1U6b7XBn6q2OqjaaaQ4TYNoF": "hat",
 };
 
